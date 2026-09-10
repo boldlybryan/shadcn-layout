@@ -1,23 +1,52 @@
-# registry-template
+# shadcn-layout
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+Intrinsic layout primitives for shadcn/ui: Stack, Cluster, Aside, Switcher, Grid, Center, Cover.
 
-> [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template-v3](https://github.com/shadcn-ui/registry-template-v3).
+These are **layout ingredients**, not a second component library. They do not replace Button, Dialog, Card, or shadcn’s app `Sidebar`. The complementary-column primitive is named **Aside** for that reason.
 
-## Getting Started
+## Install
 
-This is a template for creating a custom registry using Next.js.
+```bash
+pnpm dlx shadcn@latest add boldlybryan/shadcn-layout/stack
+pnpm dlx shadcn@latest add boldlybryan/shadcn-layout/layouts
+```
 
-- The template uses a `registry.json` file to define components and their files.
-- The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
+Or bind the namespace after you deploy a host for `/r/{name}.json`:
 
-## Documentation
+```bash
+pnpm dlx shadcn@latest registry add @shadcn-layout=https://<host>/r/{name}.json
+pnpm dlx shadcn@latest add @shadcn-layout/stack
+```
 
-Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+## Setup
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Preview at [http://localhost:3000](http://localhost:3000). Registry JSON is served from `/r/[name].json`.
+
+## Docs
+
+- [Creating and publishing registry items](./docs/PUBLISHING.md)
+- [shadcn registry docs](https://ui.shadcn.com/docs/registry)
+
+## Usage
+
+```tsx
+import { Aside, Cluster, Stack } from "@/components/ui/layouts"
+
+<Stack space="8">
+  <Cluster justify="between">
+    <h1>Settings</h1>
+    <button>Save</button>
+  </Cluster>
+  <Aside sideWidth="18rem">
+    <Aside.Side>{/* subnav */}</Aside.Side>
+    <Aside.Content>{/* page */}</Aside.Content>
+  </Aside>
+</Stack>
+```
+
+`space="4"` is the same token as Tailwind `gap-4`. Algorithms live in CSS; props only set custom properties.

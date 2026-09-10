@@ -1,0 +1,95 @@
+@layer components {
+  .layout-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: var(--align, center);
+    justify-content: var(--justify, flex-start);
+    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-aside {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-aside > [data-slot="aside-side"] {
+    flex-basis: var(--side-width, 20rem);
+    flex-grow: 1;
+  }
+
+  .layout-aside > [data-slot="aside-content"] {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--content-min, 50%);
+  }
+
+  .layout-aside[data-side="end"] > [data-slot="aside-side"] {
+    order: 1;
+  }
+
+  .layout-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-switcher > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold, 30rem) - 100%) * 999);
+  }
+
+  .layout-switcher[data-limit="2"] > :nth-last-child(n + 3),
+  .layout-switcher[data-limit="2"] > :nth-last-child(n + 3) ~ *,
+  .layout-switcher[data-limit="3"] > :nth-last-child(n + 4),
+  .layout-switcher[data-limit="3"] > :nth-last-child(n + 4) ~ *,
+  .layout-switcher[data-limit="4"] > :nth-last-child(n + 5),
+  .layout-switcher[data-limit="4"] > :nth-last-child(n + 5) ~ *,
+  .layout-switcher[data-limit="5"] > :nth-last-child(n + 6),
+  .layout-switcher[data-limit="5"] > :nth-last-child(n + 6) ~ *,
+  .layout-switcher[data-limit="6"] > :nth-last-child(n + 7),
+  .layout-switcher[data-limit="6"] > :nth-last-child(n + 7) ~ * {
+    flex-basis: 100%;
+  }
+
+  .layout-grid {
+    display: grid;
+    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min, 16rem), 100%), 1fr)
+    );
+  }
+
+  .layout-center {
+    box-sizing: content-box;
+    max-inline-size: var(--measure, 65ch);
+    margin-inline: auto;
+    padding-inline: var(--gutters, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-center[data-intrinsic] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .layout-cover {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--min-height, 100dvh);
+    padding: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .layout-cover > [data-slot="cover-child"] {
+    margin-block: auto;
+  }
+}

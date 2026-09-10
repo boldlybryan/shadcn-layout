@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid",
+  "title": "Grid",
+  "description": "An auto-fit grid whose columns are at least min wide. Uses layout-grid, not Tailwind's grid class.",
+  "files": [
+    {
+      "path": "registry/new-york/ui/grid.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nimport { type Spacing, toSpace } from \"./layout\"\n\nimport \"./layouts.css\"\n\nexport function Grid({\n  className,\n  space = \"4\",\n  min = \"16rem\",\n  as: Comp = \"div\",\n  style,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  space?: Spacing\n  min?: string\n  as?: React.ElementType\n}) {\n  return (\n    <Comp\n      data-slot=\"grid\"\n      className={cn(\"layout-grid\", className)}\n      style={\n        {\n          \"--space\": toSpace(space),\n          \"--min\": min,\n          ...style,\n        } as React.CSSProperties\n      }\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "@ui/grid.tsx"
+    },
+    {
+      "path": "registry/new-york/ui/layout.ts",
+      "content": "export type Spacing =\n  | \"0\"\n  | \"1\"\n  | \"2\"\n  | \"3\"\n  | \"4\"\n  | \"5\"\n  | \"6\"\n  | \"8\"\n  | \"10\"\n  | \"12\"\n  | \"16\"\n\n/** Maps a Tailwind spacing key to the same value as `gap-4`, `p-4`, etc. */\nexport function toSpace(space: Spacing): string {\n  return `calc(var(--spacing, 0.25rem) * ${space})`\n}\n\nexport const measures = {\n  sm: \"24rem\",\n  md: \"28rem\",\n  lg: \"32rem\",\n  xl: \"36rem\",\n  \"2xl\": \"42rem\",\n  \"3xl\": \"48rem\",\n  \"4xl\": \"56rem\",\n  \"5xl\": \"64rem\",\n  \"6xl\": \"72rem\",\n  \"7xl\": \"80rem\",\n  prose: \"65ch\",\n} as const\n\nexport type Measure = keyof typeof measures | (string & {})\n\nexport function toMeasure(measure: Measure): string {\n  return measure in measures ? measures[measure as keyof typeof measures] : measure\n}\n\nexport type Justify = \"start\" | \"center\" | \"end\" | \"between\"\nexport type Align = \"start\" | \"center\" | \"end\" | \"baseline\" | \"stretch\"\n\nexport const justifyMap: Record<Justify, string> = {\n  start: \"flex-start\",\n  center: \"center\",\n  end: \"flex-end\",\n  between: \"space-between\",\n}\n\nexport const alignMap: Record<Align, string> = {\n  start: \"flex-start\",\n  center: \"center\",\n  end: \"flex-end\",\n  baseline: \"baseline\",\n  stretch: \"stretch\",\n}\n",
+      "type": "registry:lib",
+      "target": "@ui/layout.ts"
+    },
+    {
+      "path": "registry/new-york/ui/layouts.css",
+      "content": "@layer components {\n  .layout-stack {\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-cluster {\n    display: flex;\n    flex-wrap: wrap;\n    align-items: var(--align, center);\n    justify-content: var(--justify, flex-start);\n    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-aside {\n    display: flex;\n    flex-wrap: wrap;\n    align-items: stretch;\n    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-aside > [data-slot=\"aside-side\"] {\n    flex-basis: var(--side-width, 20rem);\n    flex-grow: 1;\n  }\n\n  .layout-aside > [data-slot=\"aside-content\"] {\n    flex-basis: 0;\n    flex-grow: 999;\n    min-inline-size: var(--content-min, 50%);\n  }\n\n  .layout-aside[data-side=\"end\"] > [data-slot=\"aside-side\"] {\n    order: 1;\n  }\n\n  .layout-switcher {\n    display: flex;\n    flex-wrap: wrap;\n    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-switcher > * {\n    flex-grow: 1;\n    flex-basis: calc((var(--threshold, 30rem) - 100%) * 999);\n  }\n\n  .layout-switcher[data-limit=\"2\"] > :nth-last-child(n + 3),\n  .layout-switcher[data-limit=\"2\"] > :nth-last-child(n + 3) ~ *,\n  .layout-switcher[data-limit=\"3\"] > :nth-last-child(n + 4),\n  .layout-switcher[data-limit=\"3\"] > :nth-last-child(n + 4) ~ *,\n  .layout-switcher[data-limit=\"4\"] > :nth-last-child(n + 5),\n  .layout-switcher[data-limit=\"4\"] > :nth-last-child(n + 5) ~ *,\n  .layout-switcher[data-limit=\"5\"] > :nth-last-child(n + 6),\n  .layout-switcher[data-limit=\"5\"] > :nth-last-child(n + 6) ~ *,\n  .layout-switcher[data-limit=\"6\"] > :nth-last-child(n + 7),\n  .layout-switcher[data-limit=\"6\"] > :nth-last-child(n + 7) ~ * {\n    flex-basis: 100%;\n  }\n\n  .layout-grid {\n    display: grid;\n    gap: var(--space, calc(var(--spacing, 0.25rem) * 4));\n    grid-template-columns: repeat(\n      auto-fit,\n      minmax(min(var(--min, 16rem), 100%), 1fr)\n    );\n  }\n\n  .layout-center {\n    box-sizing: content-box;\n    max-inline-size: var(--measure, 65ch);\n    margin-inline: auto;\n    padding-inline: var(--gutters, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-center[data-intrinsic] {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .layout-cover {\n    display: flex;\n    flex-direction: column;\n    min-block-size: var(--min-height, 100dvh);\n    padding: var(--space, calc(var(--spacing, 0.25rem) * 4));\n  }\n\n  .layout-cover > [data-slot=\"cover-child\"] {\n    margin-block: auto;\n  }\n}\n",
+      "type": "registry:file",
+      "target": "@ui/layouts.css"
+    }
+  ],
+  "type": "registry:ui"
+}

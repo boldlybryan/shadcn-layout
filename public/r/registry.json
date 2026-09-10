@@ -1,78 +1,224 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
+  "name": "shadcn-layout",
+  "homepage": "https://github.com/boldlybryan/shadcn-layout",
   "items": [
     {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
+      "name": "stack",
+      "type": "registry:ui",
+      "title": "Stack",
+      "description": "Vertical flex with a token-backed gap. Use for forms, sections, and stacked content.",
       "files": [
         {
-          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
-          "type": "registry:component"
+          "path": "registry/new-york/ui/stack.tsx",
+          "type": "registry:ui",
+          "target": "@ui/stack.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
         }
       ]
     },
     {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "name": "cluster",
+      "type": "registry:ui",
+      "title": "Cluster",
+      "description": "Horizontal flex wrap with alignment knobs. Use for toolbars, tags, and action rows. Always wraps.",
       "files": [
         {
-          "path": "registry/new-york/blocks/example-form/example-form.tsx",
-          "type": "registry:component"
+          "path": "registry/new-york/ui/cluster.tsx",
+          "type": "registry:ui",
+          "target": "@ui/cluster.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
         }
       ]
     },
     {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
+      "name": "aside",
+      "type": "registry:ui",
+      "title": "Aside",
+      "description": "A declared-width complementary column beside a fluid pane. Wraps when the content pane would drop below contentMin. Not the app Sidebar.",
       "files": [
         {
-          "path": "registry/new-york/blocks/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
+          "path": "registry/new-york/ui/aside.tsx",
+          "type": "registry:ui",
+          "target": "@ui/aside.tsx"
         },
         {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
         },
         {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/lib/pokemon.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/hooks/use-pokemon.ts",
-          "type": "registry:hook"
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
         }
       ]
     },
     {
-      "name": "example-with-css",
-      "type": "registry:component",
-      "title": "Example with CSS",
-      "description": "A login form with a CSS file.",
+      "name": "switcher",
+      "type": "registry:ui",
+      "title": "Switcher",
+      "description": "A row of equal children that switches to a column when the container is narrower than threshold. No media query.",
       "files": [
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
-          "type": "registry:component"
+          "path": "registry/new-york/ui/switcher.tsx",
+          "type": "registry:ui",
+          "target": "@ui/switcher.tsx"
         },
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.css",
-          "type": "registry:component"
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
+        }
+      ]
+    },
+    {
+      "name": "grid",
+      "type": "registry:ui",
+      "title": "Grid",
+      "description": "An auto-fit grid whose columns are at least min wide. Uses layout-grid, not Tailwind's grid class.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/grid.tsx",
+          "type": "registry:ui",
+          "target": "@ui/grid.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
+        }
+      ]
+    },
+    {
+      "name": "center",
+      "type": "registry:ui",
+      "title": "Center",
+      "description": "A measure-constrained, horizontally centered column. content-box so gutters add outside the measure.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/center.tsx",
+          "type": "registry:ui",
+          "target": "@ui/center.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
+        }
+      ]
+    },
+    {
+      "name": "cover",
+      "type": "registry:ui",
+      "title": "Cover",
+      "description": "A viewport-filling column. Cover.Child is vertically centered; optional header and footer sit at the edges.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/cover.tsx",
+          "type": "registry:ui",
+          "target": "@ui/cover.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
+        }
+      ]
+    },
+    {
+      "name": "layouts",
+      "type": "registry:ui",
+      "title": "Layouts",
+      "description": "All layout primitives: Stack, Cluster, Aside, Switcher, Grid, Center, Cover.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/layouts.tsx",
+          "type": "registry:ui",
+          "target": "@ui/layouts.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/stack.tsx",
+          "type": "registry:ui",
+          "target": "@ui/stack.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/cluster.tsx",
+          "type": "registry:ui",
+          "target": "@ui/cluster.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/aside.tsx",
+          "type": "registry:ui",
+          "target": "@ui/aside.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/switcher.tsx",
+          "type": "registry:ui",
+          "target": "@ui/switcher.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/grid.tsx",
+          "type": "registry:ui",
+          "target": "@ui/grid.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/center.tsx",
+          "type": "registry:ui",
+          "target": "@ui/center.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/cover.tsx",
+          "type": "registry:ui",
+          "target": "@ui/cover.tsx"
+        },
+        {
+          "path": "registry/new-york/ui/layout.ts",
+          "type": "registry:lib",
+          "target": "@ui/layout.ts"
+        },
+        {
+          "path": "registry/new-york/ui/layouts.css",
+          "type": "registry:file",
+          "target": "@ui/layouts.css"
         }
       ]
     }
