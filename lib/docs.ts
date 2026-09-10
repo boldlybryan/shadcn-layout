@@ -26,6 +26,7 @@ export const nav = [
     title: "Guides",
     items: [
       { href: "/recipes", label: "Recipes" },
+      { href: "/showcase", label: "Showcase" },
       { href: "/agents", label: "For agents" },
     ],
   },

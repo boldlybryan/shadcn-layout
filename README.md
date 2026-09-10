@@ -57,7 +57,7 @@ pnpm install
 pnpm dev
 ```
 
-Preview at [http://localhost:3000](http://localhost:3000). Registry JSON is served from `/r/[name].json`.
+Preview at [http://localhost:3000](http://localhost:3000). Registry JSON is served from `/r/[name].json`. Composed product layouts: `/showcase`.
 
 Contributor notes: [docs/PUBLISHING.md](./docs/PUBLISHING.md). Registry spec: [shadcn registry](https://ui.shadcn.com/docs/registry).
 

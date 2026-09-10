@@ -34,6 +34,10 @@ export default function IntroductionPage() {
           <Link href="/tailwind" className="underline-offset-4 hover:underline">
             Why not Tailwind?
           </Link>
+          . For those structures as landing pages, dashboards, and settings, see the{" "}
+          <Link href="/showcase" className="underline-offset-4 hover:underline">
+            showcase
+          </Link>
           .
         </p>
       </PageHeader>
