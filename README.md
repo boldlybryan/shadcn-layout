@@ -29,8 +29,9 @@ Preview at [http://localhost:3000](http://localhost:3000). Registry JSON is serv
 
 ## Docs
 
-- [Creating and publishing registry items](./docs/PUBLISHING.md)
-- [shadcn registry docs](https://ui.shadcn.com/docs/registry)
+Live docs (this Next app): Introduction, each primitive, Recipes, and For agents. Agent dump at `/llms.txt`.
+
+Contributor notes: [docs/PUBLISHING.md](./docs/PUBLISHING.md). Registry spec: [shadcn registry](https://ui.shadcn.com/docs/registry).
 
 ## Usage
 

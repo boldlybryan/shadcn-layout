@@ -1,0 +1,44 @@
+# shadcn-layout
+
+> Intrinsic layout primitives for shadcn/ui. Not a second component library.
+
+Install: `pnpm dlx shadcn@latest add boldlybryan/shadcn-layout/layouts`
+
+Docs: / /stack /cluster /aside /switcher /grid /center /cover /recipes /agents
+Agent contract: /agents and /llms.txt
+
+## Allowed primitives (do not invent names)
+
+- Stack — vertical flex, token gap. Props: space (Tailwind key, default "4"), as.
+- Cluster — horizontal wrap. Props: space, justify (start|center|end|between), align (start|center|end|baseline|stretch). Always wraps. No wrap=false.
+- Aside — complementary column + fluid pane. NOT shadcn Sidebar. Children MUST be Aside.Side and Aside.Content. Props: sideWidth (default 20rem), contentMin (default 50%), space, side (start|end).
+- Switcher — equal columns until container < threshold, then column. No media query. Props: threshold (default 30rem), space, limit (2-6).
+- Grid — auto-fit minmax. CSS class is layout-grid, never Tailwind `grid`. Props: min (default 16rem), space.
+- Center — measure-constrained, content-box so gutters sit outside measure. Props: measure (sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|prose|CSS length, default prose), gutters, intrinsic.
+- Cover — minHeight default 100dvh. Centered node is Cover.Child.
+
+## space
+
+space is a Tailwind spacing key: "0"|"1"|"2"|"3"|"4"|"5"|"6"|"8"|"10"|"12"|"16".
+space="4" === gap-4. Do not pass rem values to space.
+
+## className
+
+On layout roots, className is for exceptions (width, background). Do not use it for gap, flex-direction, wrap, or justify.
+
+## Recipes
+
+- Form: Stack as="form"; nested Stack per label+control.
+- Page header: Cluster justify="between".
+- Dialog footer: Cluster justify="end" inside shadcn DialogContent.
+- Settings subnav: Aside inside page content; shadcn Sidebar remains app chrome.
+
+## Do not
+
+- flex flex-col gap-4 instead of Stack
+- flex flex-wrap justify-between instead of Cluster
+- w-72 shrink-0 + flex-1 instead of Aside
+- md:flex-row instead of Switcher
+- Name anything SidebarLayout / VStack / Row
+- Use shadcn Sidebar for in-page splits
+- Add Box as a layout primitive (use shadcn Card for surfaces)

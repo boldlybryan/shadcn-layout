@@ -1,0 +1,51 @@
+---
+description: Use only the named layout primitives from shadcn-layout
+alwaysApply: true
+---
+
+# Layout primitives
+
+Source of truth: `registry/new-york/ui/` and the docs site (`/`, `/stack`, …, `/agents`, `/llms.txt`).
+
+Do not invent, rename, or synonymize primitives. Use these names exactly.
+
+## Primitives
+
+| Name | Component | Role |
+|---|---|---|
+| Stack | `<Stack>` | Vertical flex |
+| Cluster | `<Cluster>` | Horizontal flex wrap |
+| Aside | `<Aside>` + `Aside.Side` + `Aside.Content` | Complementary column + growing pane (not shadcn Sidebar) |
+| Switcher | `<Switcher>` | Row that becomes a column at a container threshold |
+| Grid | `<Grid>` | Auto-fit grid (`layout-grid`, not Tailwind `grid`) |
+| Center | `<Center>` | Measure-constrained, centered |
+| Cover | `<Cover>` + `Cover.Child` | Min-height column, child vertically centered |
+
+## Props (only these)
+
+- Cluster: `space`, `justify` (`start` \| `center` \| `end` \| `between`), `align`
+- Stack: `space`, `as`
+- Aside: `sideWidth`, `contentMin`, `space`, `side`
+- Switcher: `threshold`, `space`, `limit`
+- Grid: `min`, `space`
+- Center: `measure`, `gutters`, `intrinsic`
+- Cover: `minHeight`, `space`
+
+## Recipes (only these)
+
+- Form — Stack
+- Page header — Cluster `justify="between"`
+- Dialog actions — Cluster `justify="end"`
+- Settings subnav — Aside
+
+```tsx
+// BAD
+<div className="flex flex-col gap-4">…</div>
+<div className="flex justify-between">…</div>
+
+// GOOD
+<Stack space="4">…</Stack>
+<Cluster justify="between">…</Cluster>
+```
+
+If a layout is not in the table, it is not a primitive. Do not add a new name. Ask, or reuse an existing one.
