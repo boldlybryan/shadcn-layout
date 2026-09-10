@@ -7,6 +7,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { lengthType, spacingType } from "@/lib/docs"
@@ -27,6 +28,10 @@ export default function GridPage() {
 
       <DocsSection title="Install">
         <Install item="grid" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="grid" />
       </DocsSection>
 
       <DocsSection title="When to use">

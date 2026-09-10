@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { DocsArticle, DocsSection, PageHeader } from "@/components/docs/page-header"
-import { primitives } from "@/lib/docs"
+import { DocsCode } from "@/components/docs/code-block"
+import {
+  DocsArticle,
+  DocsSection,
+  Install,
+  PageHeader,
+} from "@/components/docs/page-header"
+import { decisionTree, primitives } from "@/lib/docs"
+import { agentsMd } from "@/lib/llms"
 import { Stack } from "@/registry/new-york/ui/stack"
 
 export const metadata: Metadata = { title: "For agents" }
@@ -12,17 +19,42 @@ export default function AgentsPage() {
     <DocsArticle>
       <PageHeader title="For agents">
         <p>
-          Machine-readable contract for generating UI that uses this library.
-          Prefer <Link href="/llms.txt">/llms.txt</Link> and this page over
-          inventing layout names.
+          Contract for generating UI that uses this library. Prefer{" "}
+          <a href="/llms.txt">/llms.txt</a>,{" "}
+          <a href="/llms-full.txt">/llms-full.txt</a>, and{" "}
+          <a href="/agents.md">/agents.md</a> over inventing layout names.
         </p>
       </PageHeader>
 
-      <DocsSection title="Allowed primitives">
+      <DocsSection title="After install">
         <p className="text-sm text-muted-foreground">
-          Only these names. If a layout is not in the list, compose existing
-          ones. Do not create Row, VStack, SidebarLayout, or Flex.
+          Copy{" "}
+          <a href="/agents.md" className="underline-offset-4 hover:underline">
+            /agents.md
+          </a>{" "}
+          into the consuming app: <code>AGENTS.md</code> or{" "}
+          <code>.cursor/rules/layout-primitives.mdc</code> with{" "}
+          <code>alwaysApply</code>. This repo’s own <code>AGENTS.md</code> is for
+          working on the library, not for host apps.
         </p>
+        <Install item="layouts" full />
+      </DocsSection>
+
+      <DocsSection title="Decision tree">
+        <p className="text-sm text-muted-foreground">
+          Only these names. If a layout is not in the list, compose existing ones.
+          Do not create Row, VStack, SidebarLayout, or Flex.
+        </p>
+        <ul className="list-disc space-y-2 pl-5 text-sm">
+          {decisionTree.map((row) => (
+            <li key={row.if}>
+              {row.if} → <span className="font-medium">{row.then}</span>
+            </li>
+          ))}
+        </ul>
+      </DocsSection>
+
+      <DocsSection title="Allowed primitives">
         <ul className="list-disc space-y-2 pl-5 text-sm">
           {primitives.map((item) => (
             <li key={item.name}>
@@ -40,8 +72,8 @@ export default function AgentsPage() {
           <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
             <li>
               Import from the host <code>ui</code> folder after install, e.g.{" "}
-              <code>@/components/ui/stack</code> or{" "}
-              <code>@/components/ui/layouts</code>.
+              <code>@/components/ui/layouts</code> or{" "}
+              <code>@/components/ui/stack</code>.
             </li>
             <li>
               <code>space</code> takes Tailwind spacing keys.{" "}
@@ -75,7 +107,8 @@ export default function AgentsPage() {
             <li>
               Aside is not shadcn <code>Sidebar</code>. App chrome stays Sidebar.
               In-page complementary columns use Aside with{" "}
-              <code>Aside.Side</code> and <code>Aside.Content</code>.
+              <code>Aside.Side</code> and{" "}
+              <code>Aside.Content</code>.
             </li>
             <li>
               Cover&apos;s centered node must be <code>Cover.Child</code>.
@@ -88,18 +121,16 @@ export default function AgentsPage() {
               shadcn owns Button, Input, Dialog, Card, and Sidebar. Layouts
               wrap regions between those components.
             </li>
-            <li>
-              Recipes: form = nested Stack; page header = Cluster between;
-              dialog footer = Cluster end; settings = Aside.
-            </li>
           </ul>
         </Stack>
       </DocsSection>
 
-      <DocsSection title="Install">
-        <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`pnpm dlx shadcn@latest add boldlybryan/shadcn-layout/layouts`}</code>
-        </pre>
+      <DocsSection title="Drop-in file">
+        <p className="text-sm text-muted-foreground">
+          Same text as <a href="/agents.md">/agents.md</a>. Paste it into the
+          host app so the next session keeps the contract.
+        </p>
+        <DocsCode>{agentsMd()}</DocsCode>
       </DocsSection>
     </DocsArticle>
   )

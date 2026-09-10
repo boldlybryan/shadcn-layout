@@ -1,6 +1,6 @@
 # shadcn-layout
 
-Intrinsic layout primitives for shadcn/ui. Source: `registry/new-york/ui/`. Docs: `/`, `/stack`, `/cluster`, `/aside`, `/switcher`, `/grid`, `/center`, `/cover`, `/recipes`, `/agents`. Agent dump: `/llms.txt`.
+Intrinsic layout primitives for shadcn/ui. Source: `registry/new-york/ui/`. Docs: `/`, `/stack`, `/cluster`, `/aside`, `/switcher`, `/grid`, `/center`, `/cover`, `/recipes`, `/agents`. Agent dumps are generated from `lib/llms.ts`: `/llms.txt`, `/llms-full.txt`, `/agents.md` (drop-in for consuming apps).
 
 ## Allowed names
 
@@ -27,3 +27,5 @@ Do not invent Row, VStack, SidebarLayout, Flex, or Box-as-layout. Aside is not s
 - Header: `Cluster justify="between"`
 - Dialog actions: `Cluster justify="end"`
 - Settings subnav: Aside inside page content
+- Auth: Cover + Cover.Child + Center
+- Collection: Cluster header + Grid of Cards

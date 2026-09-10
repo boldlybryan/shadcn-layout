@@ -2,8 +2,15 @@ import Link from "next/link"
 
 import { DemoBox } from "@/components/docs/demo-box"
 import { Example } from "@/components/docs/example"
-import { DocsArticle, DocsSection, PageHeader } from "@/components/docs/page-header"
-import { installCmd, primitives } from "@/lib/docs"
+import {
+  DocsArticle,
+  DocsSection,
+  Install,
+  PageHeader,
+  Usage,
+} from "@/components/docs/page-header"
+import { decisionTree, primitives } from "@/lib/docs"
+import { Aside } from "@/registry/new-york/ui/aside"
 import { Cluster } from "@/registry/new-york/ui/cluster"
 import { Stack } from "@/registry/new-york/ui/stack"
 
@@ -24,18 +31,44 @@ export default function IntroductionPage() {
       </PageHeader>
 
       <DocsSection id="install" title="Install">
-        <p className="text-sm text-muted-foreground">
-          Copy into the host app with the shadcn CLI. One primitive, or the
-          whole kit.
-        </p>
-        <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`${installCmd("stack")}\n${installCmd("layouts")}`}</code>
-        </pre>
-        <p className="text-sm text-muted-foreground">
-          Files land next to the host <code>ui</code> alias (usually{" "}
-          <code>components/ui</code>). Spacing uses the host Tailwind scale:{" "}
-          <code>space=&quot;4&quot;</code> is the same length as <code>gap-4</code>.
-        </p>
+        <Install item="layouts" full />
+      </DocsSection>
+
+      <DocsSection id="usage" title="Usage">
+        <Usage item="layouts" />
+        <Example
+          label="Named structure instead of utility soup. Resize until the side wraps."
+          code={`import { Aside, Cluster, Stack } from "@/components/ui/layouts"
+
+<Stack space="8">
+  <Cluster justify="between">
+    <h1>Settings</h1>
+    <button>Save</button>
+  </Cluster>
+  <Aside sideWidth="72">
+    <Aside.Side as="nav">{/* subnav */}</Aside.Side>
+    <Aside.Content>{/* page */}</Aside.Content>
+  </Aside>
+</Stack>`}
+        >
+          <Stack space="6">
+            <Cluster justify="between">
+              <span className="text-sm font-medium">Settings</span>
+              <span className="rounded-md border px-2 py-1 text-xs">Save</span>
+            </Cluster>
+            <Aside sideWidth="48" space="4">
+              <Aside.Side as="nav">
+                <Stack space="2">
+                  <DemoBox>General</DemoBox>
+                  <DemoBox>Team</DemoBox>
+                </Stack>
+              </Aside.Side>
+              <Aside.Content>
+                <DemoBox>Page body</DemoBox>
+              </Aside.Content>
+            </Aside>
+          </Stack>
+        </Example>
       </DocsSection>
 
       <DocsSection id="primitives" title="Primitives">
@@ -67,36 +100,55 @@ export default function IntroductionPage() {
         </div>
       </DocsSection>
 
-      <DocsSection id="contract" title="How to use them">
-        <Stack space="3">
-          <p className="text-sm text-muted-foreground">
-            Algorithms live in CSS. Props only set custom properties.{" "}
-            <code>className</code> on a layout root is for exceptions (width,
-            background), not for gap, direction, or wrap. Primitive CSS is
-            unlayered, so those utilities will not override the algorithm.
-          </p>
-          <Example
-            label="Named structure instead of utility soup."
-            code={`<Stack space="8">
-  <Cluster justify="between">
-    <h1>Settings</h1>
-    <button>Save</button>
-  </Cluster>
-  <Aside sideWidth="18rem">
-    <Aside.Side>{/* subnav */}</Aside.Side>
-    <Aside.Content>{/* page */}</Aside.Content>
-  </Aside>
-</Stack>`}
-          >
-            <Stack space="4">
-              <Cluster justify="between">
-                <span className="text-sm font-medium">Settings</span>
-                <span className="rounded-md border px-2 py-1 text-xs">Save</span>
-              </Cluster>
-              <DemoBox>Page body</DemoBox>
-            </Stack>
-          </Example>
-        </Stack>
+      <DocsSection id="which" title="Which primitive?">
+        <p className="text-sm text-muted-foreground">
+          Pick from this list instead of writing flex. Algorithms live in CSS.
+          Props only set custom properties. <code>className</code> on a layout
+          root is for exceptions (width, background), not for gap, direction, or
+          wrap. Primitive CSS is unlayered, so those utilities will not override the
+          algorithm.
+        </p>
+        <div className="overflow-x-auto rounded-lg border">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b bg-muted/50">
+              <tr>
+                <th className="px-3 py-2 font-medium">If you need</th>
+                <th className="px-3 py-2 font-medium">Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              {decisionTree.map((row) => (
+                <tr key={row.if} className="border-b last:border-0">
+                  <td className="px-3 py-2">{row.if}</td>
+                  <td className="px-3 py-2 font-medium">{row.then}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </DocsSection>
+
+      <DocsSection id="agents" title="For your agent">
+        <p className="text-sm text-muted-foreground">
+          After install, copy{" "}
+          <a href="/agents.md" className="underline-offset-4 hover:underline">
+            /agents.md
+          </a>{" "}
+          into the consuming app’s <code>AGENTS.md</code> or{" "}
+          <code>.cursor/rules/layout-primitives.mdc</code>. Machine dumps:{" "}
+          <a href="/llms.txt" className="underline-offset-4 hover:underline">
+            /llms.txt
+          </a>{" "}
+          (contract) and{" "}
+          <a href="/llms-full.txt" className="underline-offset-4 hover:underline">
+            /llms-full.txt
+          </a>{" "}
+          (few-shots). Human guide:{" "}
+          <Link href="/agents" className="underline-offset-4 hover:underline">
+            For agents
+          </Link>
+          .
+        </p>
       </DocsSection>
 
       <DocsSection id="not" title="What this is not">

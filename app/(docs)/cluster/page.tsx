@@ -6,6 +6,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { spacingType } from "@/lib/docs"
@@ -26,6 +27,10 @@ export default function ClusterPage() {
 
       <DocsSection title="Install">
         <Install item="cluster" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="cluster" />
       </DocsSection>
 
       <DocsSection title="When to use">

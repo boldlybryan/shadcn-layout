@@ -5,7 +5,9 @@ alwaysApply: true
 
 # Layout primitives
 
-Source of truth: `registry/new-york/ui/` and the docs site (`/`, `/stack`, …, `/agents`, `/llms.txt`).
+Source of truth: `registry/new-york/ui/` and the docs site (`/`, `/stack`, …, `/agents`, `/llms.txt`, `/llms-full.txt`, `/agents.md`).
+
+Consuming apps should copy `/agents.md`, not this file.
 
 Do not invent, rename, or synonymize primitives. Use these names exactly.
 
@@ -39,6 +41,8 @@ Length props (`sideWidth`, `min`, `threshold`, `minHeight`, `contentMin`) take a
 - Page header — Cluster `justify="between"`
 - Dialog actions — Cluster `justify="end"`
 - Settings subnav — Aside
+- Auth — Cover + Center
+- Collection — Cluster + Grid
 
 ```tsx
 // BAD

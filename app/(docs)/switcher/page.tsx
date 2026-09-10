@@ -7,6 +7,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { lengthType, spacingType } from "@/lib/docs"
@@ -19,14 +20,19 @@ export default function SwitcherPage() {
     <DocsArticle>
       <PageHeader title="Switcher">
         <p>
-          Equal-width children in a row until the <em>container</em> is narrower
-          than <code>threshold</code>. Then they become a column. The switch is
-          intrinsic (flex-basis math), not a viewport media query.
+          Equal-width columns that become a stack when <em>this container</em>{" "}
+          (not the viewport) is narrower than <code>threshold</code>. Prefer
+          this over <code>md:flex-row</code>. The switch is flex-basis math, not
+          a media query.
         </p>
       </PageHeader>
 
       <DocsSection title="Install">
         <Install item="switcher" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="switcher" />
       </DocsSection>
 
       <DocsSection title="When to use">
