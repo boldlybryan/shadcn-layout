@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
 
+import { CodeToggle } from "@/components/showcase/code-toggle"
 import { Cluster } from "@/registry/new-york/ui/cluster"
 import { Stack } from "@/registry/new-york/ui/stack"
 
@@ -22,6 +23,7 @@ export function Scene({
   description,
   primitives,
   url = "lumen.app",
+  code,
   children,
 }: {
   id: string
@@ -29,6 +31,7 @@ export function Scene({
   description: string
   primitives: PrimitiveName[]
   url?: string
+  code: string
   children: ReactNode
 }) {
   return (
@@ -61,6 +64,7 @@ export function Scene({
             <span className="truncate text-xs text-muted-foreground">{url}</span>
           </Cluster>
           {children}
+          <CodeToggle code={code} />
         </div>
       </Stack>
     </section>
