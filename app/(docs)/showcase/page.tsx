@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import type { ComponentType } from "react"
 
+import { examples } from "@/components/showcase/examples"
 import {
   CatalogScene,
   InboxScene,
@@ -84,7 +85,8 @@ export default function ShowcasePage() {
                 Common website and SaaS surfaces, composed from the seven
                 primitives. Nothing here uses a viewport breakpoint to switch
                 layout. Resize the pane — Grid, Switcher, Aside, and Cluster
-                respond to the container they sit in.
+                respond to the container they sit in. Open Code under a frame
+                for the composition.
               </p>
             </Stack>
             <Cluster space="8" align="start">
@@ -111,7 +113,7 @@ export default function ShowcasePage() {
         </header>
 
         {scenes.map(({ Component, ...scene }) => (
-          <Scene key={scene.id} {...scene}>
+          <Scene key={scene.id} {...scene} code={examples[scene.id]}>
             <Component />
           </Scene>
         ))}
@@ -121,7 +123,7 @@ export default function ShowcasePage() {
 }
 
 const scenes: {
-  id: string
+  id: keyof typeof examples
   title: string
   description: string
   primitives: PrimitiveName[]
