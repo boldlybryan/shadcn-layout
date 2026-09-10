@@ -57,15 +57,33 @@ export default function StackPage() {
               description: "Gap. Same scale as Tailwind gap-4 / p-4.",
             },
             {
+              prop: "align",
+              type: '"start" | "center" | "end" | "baseline" | "stretch"',
+              default: '"stretch"',
+              description: "Cross-axis alignment.",
+            },
+            {
+              prop: "splitAfter",
+              type: "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8",
+              description:
+                "Push following children to the end of a tall stack. Give the Stack a min-height via className.",
+            },
+            {
               prop: "as",
               type: "ElementType",
               default: '"div"',
               description: 'Polymorphic root. Use as="form" for stacked fields.',
             },
             {
+              prop: "asChild",
+              type: "boolean",
+              default: "false",
+              description: "Merge the layout onto a single child instead of wrapping.",
+            },
+            {
               prop: "className",
               type: "string",
-              description: "Exceptions only (max-width, background). Not gap.",
+              description: "Exceptions only (max-width, min-height, background). Not gap.",
             },
           ]}
         />
@@ -110,6 +128,18 @@ export default function StackPage() {
               <Textarea id="docs-message" />
             </Stack>
             <Button type="submit">Submit</Button>
+          </Stack>
+        </Example>
+        <Example
+          label="splitAfter={1} on a tall stack pins later children to the end."
+          code={`<Stack space="3" splitAfter={1} className="min-h-48">
+  <div>Nav</div>
+  <div>Sign out</div>
+</Stack>`}
+        >
+          <Stack space="3" splitAfter={1} className="min-h-48 rounded-md border p-3">
+            <DemoBox>Nav</DemoBox>
+            <DemoBox>Sign out</DemoBox>
           </Stack>
         </Example>
       </DocsSection>

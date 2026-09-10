@@ -9,7 +9,7 @@ import {
   PageHeader,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
-import { spacingType } from "@/lib/docs"
+import { lengthType, spacingType } from "@/lib/docs"
 import { Aside } from "@/registry/new-york/ui/aside"
 import { Stack } from "@/registry/new-york/ui/stack"
 
@@ -56,7 +56,10 @@ export default function AsidePage() {
       <DocsSection title="Structure">
         <p className="text-sm text-muted-foreground">
           Children must be <code>Aside.Side</code> and <code>Aside.Content</code>.
-          Raw first/last child is not enough.
+          Raw first/last child is not enough. Use <code>as=&quot;nav&quot;</code> on
+          Side when it is a subnav. Put <code>min-w-0</code> / overflow on
+          overflowing inner children, not on Content — that min size is the wrap
+          trigger.
         </p>
       </DocsSection>
 
@@ -65,16 +68,17 @@ export default function AsidePage() {
           rows={[
             {
               prop: "sideWidth",
-              type: "string",
+              type: lengthType,
               default: '"20rem"',
-              description: "Ideal width of the complementary column (CSS length).",
+              description:
+                'Ideal width of the complementary column. "80" is w-80; "20rem" also works.',
             },
             {
               prop: "contentMin",
-              type: "string",
+              type: lengthType,
               default: '"50%"',
               description:
-                "Minimum inline size of the content pane before the side wraps.",
+                "Minimum inline size of the content pane before the side wraps. Gap is part of the wrap (50% + side + space).",
             },
             {
               prop: "space",
@@ -96,7 +100,7 @@ export default function AsidePage() {
         <Example
           label="Settings-style subnav. Resize the window until the content pane would be under 50%."
           code={`<Aside sideWidth="12rem" space="4">
-  <Aside.Side>
+  <Aside.Side as="nav">
     <Stack space="2">
       <div>General</div>
       <div>Team</div>
@@ -109,7 +113,7 @@ export default function AsidePage() {
 </Aside>`}
         >
           <Aside sideWidth="12rem" space="4">
-            <Aside.Side>
+            <Aside.Side as="nav">
               <Stack space="2">
                 <DemoBox>General</DemoBox>
                 <DemoBox>Team</DemoBox>

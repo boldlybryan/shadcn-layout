@@ -1,0 +1,9 @@
+/* Unlayered on purpose: owned properties must beat Tailwind utilities. */
+.layout-grid {
+  display: grid;
+  gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--min, 16rem), 100%), 1fr)
+  );
+}

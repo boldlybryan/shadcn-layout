@@ -77,4 +77,6 @@ export function installCmd(item: string) {
 }
 
 export const spacingType =
-  '"0" | "1" | "2" | "3" | "4" | "5" | "6" | "8" | "10" | "12" | "16"'
+  'Spacing ("0" | "0.5" | "1" | … | "96"; "4" = gap-4)'
+
+export const lengthType = 'Spacing key or CSS length ("72" = w-72, "20rem", "50%")'

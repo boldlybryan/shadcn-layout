@@ -72,7 +72,8 @@ export default function IntroductionPage() {
           <p className="text-sm text-muted-foreground">
             Algorithms live in CSS. Props only set custom properties.{" "}
             <code>className</code> on a layout root is for exceptions (width,
-            background), not for gap, direction, or wrap.
+            background), not for gap, direction, or wrap. Primitive CSS is
+            unlayered, so those utilities will not override the algorithm.
           </p>
           <Example
             label="Named structure instead of utility soup."

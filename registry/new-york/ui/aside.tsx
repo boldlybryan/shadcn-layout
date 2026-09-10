@@ -2,50 +2,98 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-import { type Spacing, toSpace } from "./layout"
+import {
+  type Length,
+  type PolyProps,
+  type Spacing,
+  layoutRoot,
+  toLength,
+  toSpace,
+  warnMissingSlots,
+} from "./layout"
 
-import "./layouts.css"
+import "./aside.css"
 
-function AsideRoot({
+function AsideSide<T extends React.ElementType = "div">({
+  className,
+  as,
+  asChild,
+  children,
+  ...props
+}: PolyProps<T, object>) {
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "aside-side",
+      className: cn(className),
+    },
+    children
+  )
+}
+
+function AsideContent<T extends React.ElementType = "div">({
+  className,
+  as,
+  asChild,
+  children,
+  ...props
+}: PolyProps<T, object>) {
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "aside-content",
+      className: cn(className),
+    },
+    children
+  )
+}
+
+function AsideRoot<T extends React.ElementType = "div">({
   className,
   space = "4",
   sideWidth = "20rem",
   contentMin = "50%",
   side = "start",
-  as: Comp = "div",
+  as,
+  asChild,
+  children,
   style,
   ...props
-}: React.ComponentProps<"div"> & {
-  space?: Spacing
-  sideWidth?: string
-  contentMin?: string
-  side?: "start" | "end"
-  as?: React.ElementType
-}) {
-  return (
-    <Comp
-      data-slot="aside"
-      data-side={side}
-      className={cn("layout-aside", className)}
-      style={
-        {
-          "--space": toSpace(space),
-          "--side-width": sideWidth,
-          "--content-min": contentMin,
-          ...style,
-        } as React.CSSProperties
-      }
-      {...props}
-    />
+}: PolyProps<
+  T,
+  {
+    space?: Spacing
+    sideWidth?: Length
+    contentMin?: Length
+    side?: "start" | "end"
+  }
+>) {
+  warnMissingSlots("Aside", children, [
+    { label: "Aside.Side", type: AsideSide },
+    { label: "Aside.Content", type: AsideContent },
+  ])
+
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "aside",
+      "data-side": side,
+      className: cn("layout-aside", className),
+      style: {
+        "--space": toSpace(space),
+        "--side-width": toLength(sideWidth),
+        "--content-min": toLength(contentMin),
+        ...style,
+      },
+    },
+    children
   )
-}
-
-function AsideSide({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="aside-side" className={cn(className)} {...props} />
-}
-
-function AsideContent({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="aside-content" className={cn(className)} {...props} />
 }
 
 const Aside = Object.assign(AsideRoot, {

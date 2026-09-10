@@ -114,12 +114,12 @@ export default function RecipesPage() {
         </p>
         <Example
           code={`<Aside sideWidth="12rem" space="4">
-  <Aside.Side>{/* section links */}</Aside.Side>
+  <Aside.Side as="nav">{/* section links */}</Aside.Side>
   <Aside.Content>{/* General / Team form */}</Aside.Content>
 </Aside>`}
         >
           <Aside sideWidth="12rem" space="4">
-            <Aside.Side>
+            <Aside.Side as="nav">
               <Stack space="2">
                 <DemoBox>General</DemoBox>
                 <DemoBox>Team</DemoBox>

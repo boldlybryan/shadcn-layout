@@ -1,0 +1,22 @@
+/* Unlayered on purpose: owned properties must beat Tailwind utilities. */
+.layout-aside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+}
+
+.layout-aside > [data-slot="aside-side"] {
+  flex-basis: var(--side-width, 20rem);
+  flex-grow: 1;
+}
+
+.layout-aside > [data-slot="aside-content"] {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: min(100%, var(--content-min, 50%));
+}
+
+.layout-aside[data-side="end"] > [data-slot="aside-side"] {
+  order: 1;
+}

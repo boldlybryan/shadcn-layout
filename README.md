@@ -50,4 +50,11 @@ import { Aside, Cluster, Stack } from "@/components/ui/layouts"
 </Stack>
 ```
 
-`space="4"` is the same token as Tailwind `gap-4`. Algorithms live in CSS; props only set custom properties.
+`space="4"` is the same token as Tailwind `gap-4`. Length props (`sideWidth`, `min`, `threshold`) take a spacing key (`"72"` = `w-72`) or a CSS length. Algorithms live in CSS; props only set custom properties.
+
+## Tests
+
+```bash
+pnpm test
+pnpm test:e2e
+```

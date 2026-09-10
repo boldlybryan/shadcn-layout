@@ -2,26 +2,50 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-import { type Spacing, toSpace } from "./layout"
+import {
+  type Align,
+  type PolyProps,
+  type Spacing,
+  type SplitAfter,
+  alignMap,
+  layoutRoot,
+  toSpace,
+} from "./layout"
 
-import "./layouts.css"
+import "./stack.css"
 
-export function Stack({
+export function Stack<T extends React.ElementType = "div">({
   className,
   space = "4",
-  as: Comp = "div",
+  align = "stretch",
+  splitAfter,
+  as,
+  asChild,
+  children,
   style,
   ...props
-}: React.ComponentProps<"div"> & {
-  space?: Spacing
-  as?: React.ElementType
-}) {
-  return (
-    <Comp
-      data-slot="stack"
-      className={cn("layout-stack", className)}
-      style={{ "--space": toSpace(space), ...style } as React.CSSProperties}
-      {...props}
-    />
+}: PolyProps<
+  T,
+  {
+    space?: Spacing
+    align?: Align
+    splitAfter?: SplitAfter
+  }
+>) {
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "stack",
+      "data-split": splitAfter,
+      className: cn("layout-stack", className),
+      style: {
+        "--space": toSpace(space),
+        "--align": alignMap[align],
+        ...style,
+      },
+    },
+    children
   )
 }

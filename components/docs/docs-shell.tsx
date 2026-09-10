@@ -68,8 +68,8 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
             </Stack>
           </nav>
         </Aside.Side>
-        <Aside.Content className="min-w-0">
-          <div className="px-4 py-8 md:px-8 md:py-10">{children}</div>
+        <Aside.Content>
+          <div className="min-w-0 px-4 py-8 md:px-8 md:py-10">{children}</div>
         </Aside.Content>
       </Aside>
     </div>

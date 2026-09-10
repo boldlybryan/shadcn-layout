@@ -9,22 +9,28 @@ Agent contract: /agents and /llms.txt
 
 ## Allowed primitives (do not invent names)
 
-- Stack — vertical flex, token gap. Props: space (Tailwind key, default "4"), as.
-- Cluster — horizontal wrap. Props: space, justify (start|center|end|between), align (start|center|end|baseline|stretch). Always wraps. No wrap=false.
-- Aside — complementary column + fluid pane. NOT shadcn Sidebar. Children MUST be Aside.Side and Aside.Content. Props: sideWidth (default 20rem), contentMin (default 50%), space, side (start|end).
+- Stack — vertical flex, token gap. Props: space (Tailwind key, default "4"), align (default stretch), splitAfter (1–8), as, asChild.
+- Cluster — horizontal wrap. Props: space, justify (start|center|end|between), align (start|center|end|baseline|stretch, default center). Always wraps. No wrap=false.
+- Aside — complementary column + fluid pane. NOT shadcn Sidebar. Children MUST be Aside.Side and Aside.Content. Props: sideWidth (default 20rem), contentMin (default 50%), space, side (start|end). Length props accept spacing keys or CSS lengths. Do not put min-w-0 on Aside.Content (it is the wrap trigger); put overflow on inner children.
 - Switcher — equal columns until container < threshold, then column. No media query. Props: threshold (default 30rem), space, limit (2-6).
 - Grid — auto-fit minmax. CSS class is layout-grid, never Tailwind `grid`. Props: min (default 16rem), space.
-- Center — measure-constrained, content-box so gutters sit outside measure. Props: measure (sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|prose|CSS length, default prose), gutters, intrinsic.
-- Cover — minHeight default 100dvh. Centered node is Cover.Child.
+- Center — measure-constrained, content-box so gutters sit outside measure. Props: measure (sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|prose|CSS length, default prose), gutters (default "0"), intrinsic.
+- Cover — minHeight default 100dvh. Centered node is Cover.Child. space is padding and the minimum gap between header, child, and footer.
 
-## space
+## space and lengths
 
-space is a Tailwind spacing key: "0"|"1"|"2"|"3"|"4"|"5"|"6"|"8"|"10"|"12"|"16".
+space is a Tailwind spacing key: "0"|"0.5"|"1"|…|"96".
 space="4" === gap-4. Do not pass rem values to space.
+sideWidth, min, threshold, minHeight, contentMin: spacing key or CSS length ("72" = w-72, "20rem", "50%", "100dvh").
 
 ## className
 
-On layout roots, className is for exceptions (width, background). Do not use it for gap, flex-direction, wrap, or justify.
+On layout roots, className is for exceptions (width, background, min-height for splitAfter). Do not use it for gap, flex-direction, wrap, or justify. Those utilities will lose to the primitive CSS.
+
+## as / asChild
+
+as changes the element (Stack as="form", Aside.Side as="nav", Cover.Child as="h1").
+asChild merges the layout onto a single child. Do not asChild Aside or Cover roots (they need slot children).
 
 ## Recipes
 
@@ -42,3 +48,4 @@ On layout roots, className is for exceptions (width, background). Do not use it 
 - Name anything SidebarLayout / VStack / Row
 - Use shadcn Sidebar for in-page splits
 - Add Box as a layout primitive (use shadcn Card for surfaces)
+- Default Center gutters — set gutters only where the page needs an inline inset

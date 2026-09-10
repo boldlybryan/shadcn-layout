@@ -11,10 +11,14 @@ Do not invent Row, VStack, SidebarLayout, Flex, or Box-as-layout. Aside is not s
 ## Rules
 
 - `space` is a Tailwind spacing key (`"4"` = `gap-4`). Never rem on `space`.
-- `className` on a layout root is for exceptions, not gap/direction/wrap/justify.
+- Length props (`sideWidth`, `min`, `threshold`, `minHeight`, `contentMin`) take a spacing key (`"72"` = `w-72`) or a CSS length.
+- `className` on a layout root is for exceptions, not gap/direction/wrap/justify. Owned CSS is unlayered and will win over those utilities.
+- `as` changes the element (`as="form"`). `asChild` merges onto a single child. Slots (`Aside.Side`, `Cover.Child`) also accept `as` / `asChild`.
 - Aside children MUST be `Aside.Side` and `Aside.Content`.
 - Cover’s centered node MUST be `Cover.Child`.
 - Grid’s class is `layout-grid`. Do not add Tailwind `grid` to that node.
+- Center `gutters` default to `"0"`. Set gutters at the page edge.
+- Stack `splitAfter` pins following children to the end of a tall stack (`className` for min-height).
 - shadcn owns Button, Input, Dialog, Card, and app Sidebar.
 
 ## Recipes

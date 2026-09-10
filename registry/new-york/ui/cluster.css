@@ -1,0 +1,8 @@
+/* Unlayered on purpose: owned properties must beat Tailwind utilities. */
+.layout-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: var(--align, center);
+  justify-content: var(--justify, flex-start);
+  gap: var(--space, calc(var(--spacing, 0.25rem) * 4));
+}

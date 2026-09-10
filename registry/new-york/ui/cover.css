@@ -1,0 +1,23 @@
+/* Unlayered on purpose: owned properties must beat Tailwind utilities. */
+.layout-cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--min-height, 100dvh);
+  padding: var(--space, calc(var(--spacing, 0.25rem) * 4));
+}
+
+.layout-cover > * {
+  margin-block: var(--space, calc(var(--spacing, 0.25rem) * 4));
+}
+
+.layout-cover > :first-child:not([data-slot="cover-child"]) {
+  margin-block-start: 0;
+}
+
+.layout-cover > :last-child:not([data-slot="cover-child"]) {
+  margin-block-end: 0;
+}
+
+.layout-cover > [data-slot="cover-child"] {
+  margin-block: auto;
+}

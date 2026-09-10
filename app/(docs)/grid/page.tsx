@@ -9,7 +9,7 @@ import {
   PageHeader,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
-import { spacingType } from "@/lib/docs"
+import { lengthType, spacingType } from "@/lib/docs"
 import { Grid } from "@/registry/new-york/ui/grid"
 
 export const metadata: Metadata = { title: "Grid" }
@@ -48,9 +48,10 @@ export default function GridPage() {
           rows={[
             {
               prop: "min",
-              type: "string",
+              type: lengthType,
               default: '"16rem"',
-              description: "Minimum track size before a column wraps (CSS length).",
+              description:
+                'Minimum track size before a column wraps. "64" is w-64; "16rem" also works.',
             },
             {
               prop: "space",

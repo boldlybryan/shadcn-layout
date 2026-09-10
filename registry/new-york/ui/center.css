@@ -1,0 +1,13 @@
+/* Unlayered on purpose: owned properties must beat Tailwind utilities. */
+.layout-center {
+  box-sizing: content-box;
+  max-inline-size: var(--measure, 65ch);
+  margin-inline: auto;
+  padding-inline: var(--gutters, 0);
+}
+
+.layout-center[data-intrinsic] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

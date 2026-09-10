@@ -46,45 +46,11 @@ Put primitives under `registry/new-york/ui/` so they sit next to the template’
 
 ```
 registry/new-york/ui/stack.tsx
-registry/new-york/ui/layouts.css    # shared algorithms (optional first file)
+registry/new-york/ui/stack.css
+registry/new-york/ui/layout.ts
 ```
 
-Example component (knobs → CSS variables, no utility soup):
-
-```tsx
-import * as React from "react"
-
-import { cn } from "@/lib/utils"
-
-type Spacing = "0" | "1" | "2" | "3" | "4" | "6" | "8" | "12"
-
-export function Stack({
-  className,
-  space = "4",
-  as: Comp = "div",
-  style,
-  ...props
-}: React.ComponentProps<"div"> & {
-  space?: Spacing
-  as?: "div" | "form" | "section" | "article"
-}) {
-  return (
-    <Comp
-      data-slot="stack"
-      className={cn("stack", className)}
-      style={{ "--space": `var(--spacing-${space})`, ...style } as React.CSSProperties}
-      {...props}
-    />
-  )
-}
-```
-
-Keep the algorithm in CSS, either:
-
-- a shared `layouts.css` imported by the component, listed as a second file on the registry item, or
-- the item’s `css` field in `registry.json` (injected into the host app’s CSS on install)
-
-`example-with-css` in this template is the file-based pattern.
+Primitives live under `registry/new-york/ui/` as `{name}.tsx` + `{name}.css` plus shared `layout.ts`. Copy `stack.tsx` when adding a sibling — props set custom properties, the CSS file owns the algorithm.
 
 ### Declare it in `registry.json`
 

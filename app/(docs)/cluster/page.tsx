@@ -68,13 +68,20 @@ export default function ClusterPage() {
               prop: "align",
               type: '"start" | "center" | "end" | "baseline" | "stretch"',
               default: '"center"',
-              description: "Cross-axis alignment.",
+              description:
+                "Cross-axis alignment. Center is the default so toolbars of buttons line up; use baseline for text-only clusters.",
             },
             {
               prop: "as",
               type: "ElementType",
               default: '"div"',
               description: "Polymorphic root (nav, header, …).",
+            },
+            {
+              prop: "asChild",
+              type: "boolean",
+              default: "false",
+              description: "Merge the layout onto a single child instead of wrapping.",
             },
           ]}
         />

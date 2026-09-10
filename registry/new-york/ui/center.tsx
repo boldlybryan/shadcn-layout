@@ -2,37 +2,49 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-import { type Measure, type Spacing, toMeasure, toSpace } from "./layout"
+import {
+  type Measure,
+  type PolyProps,
+  type Spacing,
+  layoutRoot,
+  toMeasure,
+  toSpace,
+} from "./layout"
 
-import "./layouts.css"
+import "./center.css"
 
-export function Center({
+export function Center<T extends React.ElementType = "div">({
   className,
   measure = "prose",
-  gutters = "4",
+  gutters = "0",
   intrinsic = false,
-  as: Comp = "div",
+  as,
+  asChild,
+  children,
   style,
   ...props
-}: React.ComponentProps<"div"> & {
-  measure?: Measure
-  gutters?: Spacing
-  intrinsic?: boolean
-  as?: React.ElementType
-}) {
-  return (
-    <Comp
-      data-slot="center"
-      data-intrinsic={intrinsic ? "" : undefined}
-      className={cn("layout-center", className)}
-      style={
-        {
-          "--measure": toMeasure(measure),
-          "--gutters": toSpace(gutters),
-          ...style,
-        } as React.CSSProperties
-      }
-      {...props}
-    />
+}: PolyProps<
+  T,
+  {
+    measure?: Measure
+    gutters?: Spacing
+    intrinsic?: boolean
+  }
+>) {
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "center",
+      "data-intrinsic": intrinsic ? "" : undefined,
+      className: cn("layout-center", className),
+      style: {
+        "--measure": toMeasure(measure),
+        "--gutters": toSpace(gutters),
+        ...style,
+      },
+    },
+    children
   )
 }

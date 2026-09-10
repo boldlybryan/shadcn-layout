@@ -2,34 +2,46 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-import { type Spacing, toSpace } from "./layout"
+import {
+  type Length,
+  type PolyProps,
+  type Spacing,
+  layoutRoot,
+  toLength,
+  toSpace,
+} from "./layout"
 
-import "./layouts.css"
+import "./grid.css"
 
-export function Grid({
+export function Grid<T extends React.ElementType = "div">({
   className,
   space = "4",
   min = "16rem",
-  as: Comp = "div",
+  as,
+  asChild,
+  children,
   style,
   ...props
-}: React.ComponentProps<"div"> & {
-  space?: Spacing
-  min?: string
-  as?: React.ElementType
-}) {
-  return (
-    <Comp
-      data-slot="grid"
-      className={cn("layout-grid", className)}
-      style={
-        {
-          "--space": toSpace(space),
-          "--min": min,
-          ...style,
-        } as React.CSSProperties
-      }
-      {...props}
-    />
+}: PolyProps<
+  T,
+  {
+    space?: Spacing
+    min?: Length
+  }
+>) {
+  return layoutRoot(
+    as,
+    asChild,
+    {
+      ...props,
+      "data-slot": "grid",
+      className: cn("layout-grid", className),
+      style: {
+        "--space": toSpace(space),
+        "--min": toLength(min),
+        ...style,
+      },
+    },
+    children
   )
 }

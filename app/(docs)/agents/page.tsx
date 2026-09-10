@@ -49,8 +49,28 @@ export default function AgentsPage() {
               pass rem values to <code>space</code>.
             </li>
             <li>
+              Length props (<code>sideWidth</code>, <code>min</code>,{" "}
+              <code>threshold</code>, <code>minHeight</code>,{" "}
+              <code>contentMin</code>) take a spacing key (<code>&quot;72&quot;</code>{" "}
+              = <code>w-72</code>) or a CSS length.
+            </li>
+            <li>
               Do not set gap, flex-direction, wrap, or justify via{" "}
-              <code>className</code> on a layout root. Use the props.
+              <code>className</code> on a layout root. Use the props. Primitive CSS
+              is unlayered and will win over those utilities.
+            </li>
+            <li>
+              <code>as</code> changes the element. <code>asChild</code> merges
+              onto a single child. Slots accept both. Do not <code>asChild</code>{" "}
+              Aside or Cover roots.
+            </li>
+            <li>
+              Center <code>gutters</code> default to <code>&quot;0&quot;</code>.
+              Set them at the page edge.
+            </li>
+            <li>
+              Stack <code>splitAfter</code> pins following children to the end of
+              a tall stack.
             </li>
             <li>
               Aside is not shadcn <code>Sidebar</code>. App chrome stays Sidebar.

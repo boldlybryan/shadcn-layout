@@ -8,7 +8,7 @@ import {
   PageHeader,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
-import { spacingType } from "@/lib/docs"
+import { lengthType, spacingType } from "@/lib/docs"
 import { Cluster } from "@/registry/new-york/ui/cluster"
 import { Cover } from "@/registry/new-york/ui/cover"
 
@@ -47,15 +47,17 @@ export default function CoverPage() {
           rows={[
             {
               prop: "minHeight",
-              type: "string",
+              type: lengthType,
               default: '"100dvh"',
-              description: "Minimum block size of the cover.",
+              description:
+                "Minimum block size of the cover. Spacing key or CSS length.",
             },
             {
               prop: "space",
               type: spacingType,
               default: '"4"',
-              description: "Padding inside the cover.",
+              description:
+                "Padding, and the minimum gap between header, Cover.Child, and footer.",
             },
           ]}
         />

@@ -9,7 +9,7 @@ import {
   PageHeader,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
-import { spacingType } from "@/lib/docs"
+import { lengthType, spacingType } from "@/lib/docs"
 import { Switcher } from "@/registry/new-york/ui/switcher"
 
 export const metadata: Metadata = { title: "Switcher" }
@@ -48,9 +48,10 @@ export default function SwitcherPage() {
           rows={[
             {
               prop: "threshold",
-              type: "string",
+              type: lengthType,
               default: '"30rem"',
-              description: "Container width at which children stack (CSS length).",
+              description:
+                'Container width at which children stack. Spacing key or CSS length.',
             },
             {
               prop: "space",

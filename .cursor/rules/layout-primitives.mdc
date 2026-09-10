@@ -23,13 +23,15 @@ Do not invent, rename, or synonymize primitives. Use these names exactly.
 
 ## Props (only these)
 
-- Cluster: `space`, `justify` (`start` \| `center` \| `end` \| `between`), `align`
-- Stack: `space`, `as`
-- Aside: `sideWidth`, `contentMin`, `space`, `side`
-- Switcher: `threshold`, `space`, `limit`
-- Grid: `min`, `space`
-- Center: `measure`, `gutters`, `intrinsic`
-- Cover: `minHeight`, `space`
+- Cluster: `space`, `justify` (`start` \| `center` \| `end` \| `between`), `align` (default `center`), `as`, `asChild`
+- Stack: `space`, `align` (default `stretch`), `splitAfter` (1–8), `as`, `asChild`
+- Aside: `sideWidth`, `contentMin`, `space`, `side`, `as` / `asChild` on slots
+- Switcher: `threshold`, `space`, `limit`, `as`, `asChild`
+- Grid: `min`, `space`, `as`, `asChild`
+- Center: `measure`, `gutters` (default `"0"`), `intrinsic`, `as`, `asChild`
+- Cover: `minHeight`, `space`, `as` / `asChild` on `Cover.Child`
+
+Length props (`sideWidth`, `min`, `threshold`, `minHeight`, `contentMin`) take a Tailwind spacing key or a CSS length. `space` is keys only.
 
 ## Recipes (only these)
 

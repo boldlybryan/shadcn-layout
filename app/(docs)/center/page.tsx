@@ -60,8 +60,9 @@ export default function CenterPage() {
             {
               prop: "gutters",
               type: spacingType,
-              default: '"4"',
-              description: "Inline padding added outside the measure.",
+              default: '"0"',
+              description:
+                "Inline padding added outside the measure. Default is none; set this at the page edge.",
             },
             {
               prop: "intrinsic",
@@ -75,7 +76,7 @@ export default function CenterPage() {
 
       <DocsSection title="Examples">
         <Example
-          label="Default measure is prose (65ch)."
+          label="Default measure is prose (65ch). Gutters default to 0; set them at the page edge."
           code={`<Center measure="prose" gutters="4">
   <p>Center limits line length. Gutters sit outside that measure.</p>
 </Center>`}
