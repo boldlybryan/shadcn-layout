@@ -7,6 +7,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { spacingType } from "@/lib/docs"
@@ -20,14 +21,19 @@ export default function CenterPage() {
     <DocsArticle>
       <PageHeader title="Center">
         <p>
-          A measure-constrained column, centered on the inline axis. It uses{" "}
+          A centered column with a max width — the named version of{" "}
+          <code>max-w-prose mx-auto</code>. It uses{" "}
           <code>box-sizing: content-box</code> so <code>gutters</code> sit
-          outside the measure instead of eating into it.
+          outside that width instead of eating into it.
         </p>
       </PageHeader>
 
       <DocsSection title="Install">
         <Install item="center" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="center" />
       </DocsSection>
 
       <DocsSection title="When to use">

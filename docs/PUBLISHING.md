@@ -23,11 +23,9 @@ Official references:
 | `grid` | Auto-fit minmax grid |
 | `center` | Measure-constrained, centered column |
 | `cover` | Viewport-filling column, child vertically centered |
+| `layouts` | Kit that includes every primitive plus a barrel export |
 
-Optional later:
-
-- `layouts` — kit that `registryDependencies` all of the above
-- example **blocks** (settings aside, page header) — recipes, not primitives
+Recipes live on the docs site (`/recipes`). They are not extra primitives.
 
 Rules:
 

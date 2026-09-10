@@ -21,6 +21,12 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           </Link>
           <Cluster space="4">
             <a
+              href="/agents.md"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
+              agents.md
+            </a>
+            <a
               href="/llms.txt"
               className="text-sm text-muted-foreground hover:text-foreground"
             >

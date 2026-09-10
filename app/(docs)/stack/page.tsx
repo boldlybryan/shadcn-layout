@@ -7,6 +7,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { spacingType } from "@/lib/docs"
@@ -30,6 +31,10 @@ export default function StackPage() {
 
       <DocsSection title="Install">
         <Install item="stack" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="stack" />
       </DocsSection>
 
       <DocsSection title="When to use">

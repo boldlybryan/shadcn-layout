@@ -1,5 +1,9 @@
 import { Stack } from "@/registry/new-york/ui/stack"
 
+export { DocsCode } from "@/components/docs/code-block"
+export { Install } from "@/components/docs/install"
+export { Usage } from "@/components/docs/usage"
+
 export function DocsArticle({ children }: { children: React.ReactNode }) {
   return (
     <article className="mx-auto w-full max-w-3xl">
@@ -41,14 +45,5 @@ export function PageHeader({
         <div className="text-base text-muted-foreground [&_p+p]:mt-3">{children}</div>
       </Stack>
     </header>
-  )
-}
-
-export function Install({ item }: { item: string }) {
-  const cmd = `pnpm dlx shadcn@latest add boldlybryan/shadcn-layout/${item}`
-  return (
-    <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-      <code>{cmd}</code>
-    </pre>
   )
 }

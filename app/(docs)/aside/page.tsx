@@ -7,6 +7,7 @@ import {
   DocsSection,
   Install,
   PageHeader,
+  Usage,
 } from "@/components/docs/page-header"
 import { PropsTable } from "@/components/docs/props-table"
 import { lengthType, spacingType } from "@/lib/docs"
@@ -33,6 +34,10 @@ export default function AsidePage() {
 
       <DocsSection title="Install">
         <Install item="aside" />
+      </DocsSection>
+
+      <DocsSection title="Usage">
+        <Usage item="aside" />
       </DocsSection>
 
       <DocsSection title="When to use">
