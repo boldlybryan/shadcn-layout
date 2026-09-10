@@ -1,6 +1,6 @@
 # shadcn-layout
 
-Intrinsic layout primitives for shadcn/ui. Source: `registry/new-york/ui/`. Docs: `/`, `/intrinsic`, `/stack`, `/cluster`, `/aside`, `/switcher`, `/grid`, `/center`, `/cover`, `/recipes`, `/agents`. Agent dumps are generated from `lib/llms.ts`: `/llms.txt`, `/llms-full.txt`, `/agents.md` (drop-in for consuming apps).
+Intrinsic layout primitives for shadcn/ui. Source: `registry/new-york/ui/`. Docs: `/`, `/intrinsic`, `/tailwind`, `/stack`, `/cluster`, `/aside`, `/switcher`, `/grid`, `/center`, `/cover`, `/recipes`, `/agents`. Agent dumps are generated from `lib/llms.ts`: `/llms.txt`, `/llms-full.txt`, `/agents.md` (drop-in for consuming apps).
 
 ## Allowed names
 

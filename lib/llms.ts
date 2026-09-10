@@ -189,7 +189,7 @@ Single primitive: \`${installCmd("stack")}\` then \`import { Stack } from "@/com
 
 Files land next to the host ui alias (usually components/ui). Each primitive ships a .tsx, a .css imported by that file, and shared layout.ts. Do not add the CSS to globals.css.
 
-Docs: / /intrinsic /stack /cluster /aside /switcher /grid /center /cover /recipes /agents
+Docs: / /intrinsic /tailwind /stack /cluster /aside /switcher /grid /center /cover /recipes /agents
 Agent contract: /agents, /agents.md (drop-in for the consuming app), /llms.txt, /llms-full.txt
 
 ## Allowed primitives (do not invent names)

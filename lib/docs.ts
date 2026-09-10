@@ -7,6 +7,7 @@ export const nav = [
     items: [
       { href: "/", label: "Introduction" },
       { href: "/intrinsic", label: "Intrinsic design" },
+      { href: "/tailwind", label: "Tailwind for layout" },
     ],
   },
   {

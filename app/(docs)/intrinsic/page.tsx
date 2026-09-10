@@ -102,6 +102,13 @@ export default function IntrinsicPage() {
           . The algorithms are theirs; the React and Tailwind token wiring is
           this project.
         </p>
+        <p className="text-sm text-muted-foreground">
+          Why writing those algorithms as Tailwind utilities goes wrong is{" "}
+          <Link href="/tailwind" className="underline-offset-4 hover:underline">
+            The perils of Tailwind for layout
+          </Link>
+          .
+        </p>
       </DocsSection>
     </DocsArticle>
   )
