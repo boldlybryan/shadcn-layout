@@ -4,7 +4,10 @@ export const INSTALL_PREFIX = "boldlybryan/shadcn-layout"
 export const nav = [
   {
     title: "Start",
-    items: [{ href: "/", label: "Introduction" }],
+    items: [
+      { href: "/", label: "Introduction" },
+      { href: "/intrinsic", label: "Intrinsic design" },
+    ],
   },
   {
     title: "Primitives",

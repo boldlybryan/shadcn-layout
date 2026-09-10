@@ -26,7 +26,12 @@ export default function IntroductionPage() {
         </p>
         <p>
           The job is to stop repeating <code>flex flex-col gap-4</code> and{" "}
-          <code>md:flex-row</code> folklore for the same five structures.
+          <code>md:flex-row</code> folklore for the same five structures. The
+          primitives are{" "}
+          <Link href="/intrinsic" className="underline-offset-4 hover:underline">
+            intrinsic
+          </Link>
+          : they wrap because of their container, not because of a breakpoint.
         </p>
       </PageHeader>
 
