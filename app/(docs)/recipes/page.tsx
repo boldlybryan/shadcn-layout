@@ -27,9 +27,9 @@ export default function RecipesPage() {
     <DocsArticle>
       <PageHeader title="Recipes">
         <p>
-          Repeated product layouts, composed from primitives. Use these instead
-          of inventing new names. Dialog and dropdown chrome still come from
-          shadcn; only the spatial recipe is here.
+          Common product layouts built from the seven primitives. Dialog and
+          dropdown chrome still come from shadcn; these examples only show
+          how the pieces sit together.
         </p>
       </PageHeader>
 
@@ -88,7 +88,7 @@ export default function RecipesPage() {
       <DocsSection title="Dialog actions">
         <p className="text-sm text-muted-foreground">
           Inside shadcn DialogContent: Stack for title + body, Cluster end for
-          buttons. Do not restyle Dialog itself.
+          buttons. Leave Dialog’s own chrome to shadcn.
         </p>
         <Example
           code={`<Stack space="4">
@@ -115,36 +115,10 @@ export default function RecipesPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Settings subnav">
-        <p className="text-sm text-muted-foreground">
-          Aside inside page content. The host app Sidebar stays around the page.
-          You can reuse SidebarMenu* visuals inside Aside.Side; the layout is
-          still Aside.
-        </p>
-        <Example
-          code={`<Aside sideWidth="12rem" space="4">
-  <Aside.Side as="nav">{/* section links */}</Aside.Side>
-  <Aside.Content>{/* General / Team form */}</Aside.Content>
-</Aside>`}
-        >
-          <Aside sideWidth="12rem" space="4">
-            <Aside.Side as="nav">
-              <Stack space="2">
-                <DemoBox>General</DemoBox>
-                <DemoBox>Team</DemoBox>
-              </Stack>
-            </Aside.Side>
-            <Aside.Content>
-              <DemoBox>Organization name, slug, …</DemoBox>
-            </Aside.Content>
-          </Aside>
-        </Example>
-      </DocsSection>
-
       <DocsSection title="Settings page">
         <p className="text-sm text-muted-foreground">
-          Compose a Cluster header with Aside. The host app Sidebar stays around
-          this page as chrome. This is the in-page split, not a new primitive.
+          Cluster header plus Aside. The app <code>Sidebar</code>, if you have
+          one, stays around this page. The in-page split is Aside.
         </p>
         <Example
           code={`import { Aside, Cluster, Stack } from "@/components/ui/layouts"
@@ -230,8 +204,8 @@ export default function RecipesPage() {
 
       <DocsSection title="Collection">
         <p className="text-sm text-muted-foreground">
-          Cluster header plus a Grid of shadcn Cards. Surfaces stay Card; Grid
-          only owns the tracks.
+          Cluster header plus a Grid of shadcn Cards. Card is the surface; Grid
+          only places them.
         </p>
         <Example
           code={`import { Cluster, Grid, Stack } from "@/components/ui/layouts"

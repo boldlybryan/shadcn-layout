@@ -13,35 +13,34 @@ export default function IntrinsicPage() {
     <DocsArticle>
       <PageHeader title="Intrinsic design">
         <p>
-          A layout is intrinsic when it takes its shape from the space it is
-          in, and from the size of its own children — not from the width of the
-          viewport. The same Switcher in a wide settings pane and a narrow
-          dialog should wrap at the same <em>container</em> threshold, even if
-          the window has not changed.
+          A layout is intrinsic when it takes its shape from the space it sits
+          in, and from the size of its children — not from the width of the
+          browser window. The same Switcher in a wide settings pane and a
+          narrow dialog should wrap at the same container width, even if the
+          window has not changed.
         </p>
       </PageHeader>
 
-      <DocsSection title="Against the breakpoint">
+      <DocsSection title="Why not a breakpoint?">
         <p className="text-sm text-muted-foreground">
-          Most product CSS still says “row on medium screens, column on small
-          ones.” That is a guess about the browser window. It fails as soon as
-          the same block sits in a sidebar, a card, or a split pane: the
-          viewport is wide, the container is not, and <code>md:flex-row</code>{" "}
-          still forces a row.
+          <code>md:flex-row</code> means “row when the <em>window</em> is at
+          least medium.” That fails as soon as the same block lives in a card,
+          a dialog, or a split pane: the window is wide, the box is not, and
+          the row still forces itself.
         </p>
         <p className="text-sm text-muted-foreground">
-          Intrinsic CSS asks a different question. How wide is <em>this</em>{" "}
-          box? How wide do these children need to be? Flex-basis math,{" "}
-          <code>minmax</code>, and <code>min-inline-size</code> already know. A
-          media query is not required.
+          These components ask a smaller question: how wide is <em>this</em>{" "}
+          box, and how wide do these children need to be? The wrap is CSS
+          (flex-basis, <code>minmax</code>, a minimum width on a pane). There is
+          no media query.
         </p>
       </DocsSection>
 
       <DocsSection title="Watch the container, not the window">
         <p className="text-sm text-muted-foreground">
-          Narrow this column. The three panes below switch to a stack when{" "}
-          <em>their parent</em> is under <code>24rem</code>, whether or not you
-          resized the browser.
+          Narrow this docs column. The three panes stack when <em>their
+          parent</em> is under <code>24rem</code>, whether or not you resized
+          the browser.
         </p>
         <Example
           label="Switcher wraps at a container threshold. There is no md: breakpoint."
@@ -59,22 +58,22 @@ export default function IntrinsicPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Named algorithms">
+      <DocsSection title="Why they have names">
         <p className="text-sm text-muted-foreground">
-          Intrinsic behavior is easier to reuse when it has a name. Stack is
-          always a column. Cluster always wraps. Aside wraps when the growing
-          pane would drop below a minimum. Switcher wraps all children at once.
-          Grid peels off columns one by one. Those are different algorithms.{" "}
-          <code>flex</code> and <code>md:</code> collapse them into one folklore
-          string.
+          Stack is always a column. Cluster always wraps. Aside wraps when the
+          growing pane would get too thin. Switcher wraps all children at once.
+          Grid peels off columns one by one. Those are different behaviors.
+          Writing <code>flex</code> and <code>md:</code> by hand hides which one
+          you meant.
         </p>
         <p className="text-sm text-muted-foreground">
-          This kit copies those algorithms into React for shadcn apps. Props
-          only set custom properties. The wrap still happens in CSS. See the{" "}
+          Props only set custom properties (<code>space</code>,{" "}
+          <code>threshold</code>, <code>sideWidth</code>). The wrap still
+          happens in CSS. The seven names are on the{" "}
           <Link href="/" className="underline-offset-4 hover:underline">
             Introduction
-          </Link>{" "}
-          for the closed set of names.
+          </Link>
+          .
         </p>
       </DocsSection>
 
@@ -89,16 +88,19 @@ export default function IntrinsicPage() {
           >
             Every Layout
           </a>
-          , by Heydon Pickering and Andy Bell. They showed that composition
-          primitives — not more breakpoints — are how you layout for unknown
-          containers.
+          , by Heydon Pickering and Andy Bell. They showed that a few
+          composition primitives — not more breakpoints — are how you layout
+          for containers you do not control.
         </p>
         <p className="text-sm text-muted-foreground">
-          shadcn-layout is a translation of that work into components you can
-          install next to Button and Card. The complementary column is called
-          Aside here so it does not collide with shadcn’s app{" "}
-          <code>Sidebar</code>. The algorithms are theirs; the React and token
-          wiring is this project.
+          This kit is that work as React components you install next to Button
+          and Card. Their complementary column is called Sidebar; shadcn already
+          uses that name for app chrome, so the in-page split here is{" "}
+          <Link href="/aside" className="underline-offset-4 hover:underline">
+            Aside
+          </Link>
+          . The algorithms are theirs; the React and Tailwind token wiring is
+          this project.
         </p>
       </DocsSection>
     </DocsArticle>

@@ -20,10 +20,10 @@ export default function SwitcherPage() {
     <DocsArticle>
       <PageHeader title="Switcher">
         <p>
-          Equal-width columns that become a stack when <em>this container</em>{" "}
-          (not the viewport) is narrower than <code>threshold</code>. Prefer
-          this over <code>md:flex-row</code>. The switch is flex-basis math, not
-          a media query.
+          Equal-width children in a row, until <em>this container</em> is
+          narrower than <code>threshold</code>. Then they become a stack. Prefer
+          this over <code>md:flex-row</code>, which keys off the window instead
+          of the box.
         </p>
       </PageHeader>
 
@@ -38,13 +38,13 @@ export default function SwitcherPage() {
       <DocsSection title="When to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
           <li>Two or three equal panes that should stack when they cannot sit in a row.</li>
-          <li>Form rows that are side-by-side on wide containers, stacked on narrow ones.</li>
+          <li>Form rows that are side-by-side in a wide box, stacked in a narrow one.</li>
         </ul>
       </DocsSection>
 
       <DocsSection title="When not to use">
-        <ul className="list-disc space-y-2 pl-5 text-muted-foreground text-sm">
-          <li>A fixed sidebar plus a growing pane — Aside.</li>
+        <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+          <li>A declared-width column plus a growing pane — Aside.</li>
           <li>Cards with a minimum width in a wrapping grid — Grid.</li>
         </ul>
       </DocsSection>
@@ -57,7 +57,7 @@ export default function SwitcherPage() {
               type: lengthType,
               default: '"30rem"',
               description:
-                'Container width at which children stack. Spacing key or CSS length.',
+                "Container width at which children stack. Spacing key or CSS length.",
             },
             {
               prop: "space",
@@ -69,7 +69,7 @@ export default function SwitcherPage() {
               prop: "limit",
               type: "2 | 3 | 4 | 5 | 6",
               description:
-                "If there are more than this many children, force them to wrap (all go full width).",
+                "If there are more children than this, they all go full width.",
             },
           ]}
         />
@@ -92,12 +92,12 @@ export default function SwitcherPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO — viewport folklore
+          <code>{`// Viewport breakpoint — wrong box
 <div className="flex flex-col gap-4 md:flex-row">…</div>
 
-// YES
+// Switcher — this container
 <Switcher threshold="30rem" space="4">…</Switcher>`}</code>
         </pre>
       </DocsSection>

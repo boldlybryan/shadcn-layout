@@ -19,19 +19,18 @@ export default function IntroductionPage() {
     <DocsArticle>
       <PageHeader title="Introduction">
         <p>
-          shadcn-layout is a small set of layout ingredients for apps that already
-          use shadcn/ui. It does not replace Button, Dialog, Card, or the app{" "}
-          <code>Sidebar</code>. It names the spatial patterns those components sit
-          inside.
+          shadcn-layout is seven layout components for apps that already use
+          shadcn/ui. They sit around Button, Dialog, Card, and the app{" "}
+          <code>Sidebar</code> — they do not replace them.
         </p>
         <p>
-          The job is to stop repeating <code>flex flex-col gap-4</code> and{" "}
-          <code>md:flex-row</code> folklore for the same five structures. The
-          primitives are{" "}
+          Use them instead of repeating <code>flex flex-col gap-4</code> and{" "}
+          <code>md:flex-row</code> for the same structures. They wrap because of
+          their own container, not because of a breakpoint. That idea is{" "}
           <Link href="/intrinsic" className="underline-offset-4 hover:underline">
-            intrinsic
+            intrinsic design
           </Link>
-          : they wrap because of their container, not because of a breakpoint.
+          .
         </p>
       </PageHeader>
 
@@ -42,7 +41,7 @@ export default function IntroductionPage() {
       <DocsSection id="usage" title="Usage">
         <Usage item="layouts" />
         <Example
-          label="Named structure instead of utility soup. Resize until the side wraps."
+          label="A settings header and an in-page split. Narrow the pane to see the side wrap."
           code={`import { Aside, Cluster, Stack } from "@/components/ui/layouts"
 
 <Stack space="8">
@@ -76,10 +75,34 @@ export default function IntroductionPage() {
         </Example>
       </DocsSection>
 
+      <DocsSection id="how" title="How these work">
+        <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+          <li>
+            <code>space=&quot;4&quot;</code> is the same length as Tailwind{" "}
+            <code>gap-4</code>. Width-like props (<code>sideWidth</code>,{" "}
+            <code>min</code>, <code>threshold</code>) take the same keys (
+            <code>&quot;72&quot;</code> is <code>w-72</code>) or a CSS length.
+          </li>
+          <li>
+            Wrapping is based on the component’s container, not{" "}
+            <code>md:</code> breakpoints. See{" "}
+            <Link href="/intrinsic" className="underline-offset-4 hover:underline">
+              Intrinsic design
+            </Link>
+            .
+          </li>
+          <li>
+            <code>className</code> is for color, radius, and min-height. Gap and
+            direction are already the component’s job — extra{" "}
+            <code>flex</code> / <code>gap-*</code> classes will not change them.
+          </li>
+        </ul>
+      </DocsSection>
+
       <DocsSection id="primitives" title="Primitives">
         <p className="text-sm text-muted-foreground">
-          If a layout is not in this table, it is not a primitive. Do not invent a
-          new name. Compose these.
+          A page header is Cluster. A settings split is Aside. You do not need
+          a new component for those — compose these seven.
         </p>
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-left text-sm">
@@ -107,11 +130,7 @@ export default function IntroductionPage() {
 
       <DocsSection id="which" title="Which primitive?">
         <p className="text-sm text-muted-foreground">
-          Pick from this list instead of writing flex. Algorithms live in CSS.
-          Props only set custom properties. <code>className</code> on a layout
-          root is for exceptions (width, background), not for gap, direction, or
-          wrap. Primitive CSS is unlayered, so those utilities will not override the
-          algorithm.
+          Start here instead of reaching for flex utilities.
         </p>
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-left text-sm">
@@ -133,45 +152,37 @@ export default function IntroductionPage() {
         </div>
       </DocsSection>
 
+      <DocsSection id="aside-sidebar" title="Aside and Sidebar">
+        <p className="text-sm text-muted-foreground">
+          shadcn already ships <code>Sidebar</code> for the app shell: icon rail,
+          collapse, mobile sheet. <Link href="/aside" className="underline-offset-4 hover:underline">Aside</Link>{" "}
+          is a split <em>inside</em> a page — settings links beside a form, filters
+          beside results. Use both in the same app. They are not interchangeable.
+        </p>
+      </DocsSection>
+
       <DocsSection id="agents" title="For your agent">
         <p className="text-sm text-muted-foreground">
           After install, copy{" "}
           <a href="/agents.md" className="underline-offset-4 hover:underline">
             /agents.md
           </a>{" "}
-          into the consuming app’s <code>AGENTS.md</code> or{" "}
-          <code>.cursor/rules/layout-primitives.mdc</code>. Machine dumps:{" "}
+          into your app’s <code>AGENTS.md</code> or{" "}
+          <code>.cursor/rules/layout-primitives.mdc</code> so generated UI keeps
+          using these names. Short reference:{" "}
           <a href="/llms.txt" className="underline-offset-4 hover:underline">
             /llms.txt
-          </a>{" "}
-          (contract) and{" "}
+          </a>
+          . Examples:{" "}
           <a href="/llms-full.txt" className="underline-offset-4 hover:underline">
             /llms-full.txt
-          </a>{" "}
-          (few-shots). Human guide:{" "}
+          </a>
+          . Walkthrough:{" "}
           <Link href="/agents" className="underline-offset-4 hover:underline">
             For agents
           </Link>
           .
         </p>
-      </DocsSection>
-
-      <DocsSection id="not" title="What this is not">
-        <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>Not a second button/input library. Use shadcn for those.</li>
-          <li>
-            Not the shadcn <code>Sidebar</code>. That is app chrome. In-page
-            complementary columns use <Link href="/aside" className="underline-offset-4 hover:underline">Aside</Link>.
-          </li>
-          <li>
-            Not a Box/Card. Visual surfaces stay with shadcn <code>Card</code>.
-          </li>
-          <li>
-            Do not add <code>wrap</code>, <code>direction</code>, or{" "}
-            <code>grow</code> to every primitive. Each one has a short control
-            surface on purpose.
-          </li>
-        </ul>
       </DocsSection>
     </DocsArticle>
   )

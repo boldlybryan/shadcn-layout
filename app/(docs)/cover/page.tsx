@@ -20,9 +20,9 @@ export default function CoverPage() {
     <DocsArticle>
       <PageHeader title="Cover">
         <p>
-          A column that fills at least <code>minHeight</code> (default{" "}
-          <code>100dvh</code>). Header and footer are optional siblings.{" "}
-          <code>Cover.Child</code> is vertically centered in the remaining space.
+          A column that is at least <code>minHeight</code> tall (default{" "}
+          <code>100dvh</code>). Header and footer are optional.{" "}
+          <code>Cover.Child</code> is centered in the space between them.
         </p>
       </PageHeader>
 
@@ -36,7 +36,7 @@ export default function CoverPage() {
 
       <DocsSection title="When to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>Auth screens, empty states, error states that should fill the viewport.</li>
+          <li>Auth screens, empty states, and errors that should fill the viewport.</li>
           <li>A hero whose middle message stays centered between chrome.</li>
         </ul>
       </DocsSection>
@@ -54,8 +54,7 @@ export default function CoverPage() {
               prop: "minHeight",
               type: lengthType,
               default: '"100dvh"',
-              description:
-                "Minimum block size of the cover. Spacing key or CSS length.",
+              description: "Minimum height. Spacing key or CSS length.",
             },
             {
               prop: "space",
@@ -67,7 +66,7 @@ export default function CoverPage() {
           ]}
         />
         <p className="text-sm text-muted-foreground">
-          Mark the centered node with <code>Cover.Child</code>. Other children
+          Wrap the centered node in <code>Cover.Child</code>. Other children
           become the header (first) and footer (last).
         </p>
       </DocsSection>
@@ -99,12 +98,12 @@ export default function CoverPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO
+          <code>{`// Manual viewport centering
 <div className="flex min-h-screen flex-col items-center justify-center">…</div>
 
-// YES
+// Cover
 <Cover>
   <Cover.Child>…</Cover.Child>
 </Cover>`}</code>

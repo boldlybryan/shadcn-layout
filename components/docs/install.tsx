@@ -28,7 +28,7 @@ export function Install({
       {full ? (
         <p className="text-sm text-muted-foreground">
           Requires an existing shadcn/ui app (<code>components.json</code>). This
-          copies source into the host <code>ui</code> folder. It is not{" "}
+          copies source into your <code>ui</code> folder. It is not{" "}
           <code>npm install shadcn-layout</code>.
         </p>
       ) : null}
@@ -53,7 +53,7 @@ export function Install({
         </p>
       ) : null}
       <p className="text-sm text-muted-foreground">
-        Files land next to the host <code>ui</code> alias (usually{" "}
+        Files land next to your <code>ui</code> alias (usually{" "}
         <code>components/ui</code>): <code>{files.join(", ")}</code>. Each
         component imports its own CSS — do not add it to{" "}
         <code>globals.css</code>.

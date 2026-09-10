@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { DemoBox } from "@/components/docs/demo-box"
 import { Example } from "@/components/docs/example"
@@ -21,14 +22,18 @@ export default function AsidePage() {
     <DocsArticle>
       <PageHeader title="Aside">
         <p>
-          A declared-width complementary column beside a fluid pane. When the
-          content pane would drop below <code>contentMin</code>, the side
-          wraps above (or below) the pane. No media query.
+          A column with a declared width next to a pane that grows. When the
+          growing pane would drop below <code>contentMin</code>, the side
+          wraps onto its own row. No media query.
         </p>
         <p>
-          This is not the shadcn <code>Sidebar</code>. That component is app
-          chrome (icon rail, collapse, mobile sheet). Aside is an in-page
-          split: settings subnav, filter rail, table of contents.
+          shadcn’s <code>Sidebar</code> is the app shell (icon rail, collapse,
+          mobile sheet). Aside is a split <em>inside</em> a page: settings
+          links beside a form, filters beside results.{" "}
+          <Link href="/#aside-sidebar" className="underline-offset-4 hover:underline">
+            More on that distinction
+          </Link>
+          .
         </p>
       </PageHeader>
 
@@ -51,20 +56,21 @@ export default function AsidePage() {
       <DocsSection title="When not to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
           <li>
-            Product navigation. Use shadcn <code>Sidebar</code> +{" "}
-            <code>SidebarProvider</code>.
+            Product navigation around the whole app. That is shadcn{" "}
+            <code>Sidebar</code> + <code>SidebarProvider</code>.
           </li>
-          <li>User-dragged splits — that is <code>ResizablePanelGroup</code>.</li>
+          <li>A split the user can drag — <code>ResizablePanelGroup</code>.</li>
         </ul>
       </DocsSection>
 
       <DocsSection title="Structure">
         <p className="text-sm text-muted-foreground">
-          Children must be <code>Aside.Side</code> and <code>Aside.Content</code>.
-          Raw first/last child is not enough. Use <code>as=&quot;nav&quot;</code> on
-          Side when it is a subnav. Put <code>min-w-0</code> / overflow on
-          overflowing inner children, not on Content — that min size is the wrap
-          trigger.
+          Pass <code>Aside.Side</code> and <code>Aside.Content</code>. The wrap
+          math is attached to those slots, so two plain children will not wrap
+          correctly. Use <code>as=&quot;nav&quot;</code> on Side when it is a
+          subnav. If a table or other wide child overflows, put{" "}
+          <code>min-w-0</code> on that child — not on Content, whose min width
+          is what triggers the wrap.
         </p>
       </DocsSection>
 
@@ -83,7 +89,7 @@ export default function AsidePage() {
               type: lengthType,
               default: '"50%"',
               description:
-                "Minimum inline size of the content pane before the side wraps. Gap is part of the wrap (50% + side + space).",
+                "Minimum width of the content pane before the side wraps. The gap counts: wrap happens when side + gap + this minimum no longer fit.",
             },
             {
               prop: "space",
@@ -103,7 +109,7 @@ export default function AsidePage() {
 
       <DocsSection title="Examples">
         <Example
-          label="Settings-style subnav. Resize the window until the content pane would be under 50%."
+          label="Settings-style subnav. Narrow the pane until the content would be under 50%."
           code={`<Aside sideWidth="12rem" space="4">
   <Aside.Side as="nav">
     <Stack space="2">
@@ -135,16 +141,16 @@ export default function AsidePage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO — fake sidebar that never wraps
+          <code>{`// A column that never wraps
 <aside className="w-72 shrink-0">…</aside>
 <div className="flex-1">…</div>
 
-// NO — shadcn Sidebar names for an in-page split
+// App chrome (wrong tool for an in-page split)
 <Sidebar>…</Sidebar>
 
-// YES
+// Aside
 <Aside sideWidth="18rem">
   <Aside.Side>…</Aside.Side>
   <Aside.Content>…</Aside.Content>

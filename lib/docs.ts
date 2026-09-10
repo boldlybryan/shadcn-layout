@@ -34,7 +34,7 @@ export const primitives = [
   {
     name: "Stack",
     href: "/stack",
-    role: "Vertical flex with a token-backed gap.",
+    role: "Vertical list with a shared gap.",
     install: "stack",
     importName: "Stack",
     files: ["stack.tsx", "stack.css", "layout.ts"],
@@ -46,7 +46,7 @@ export const primitives = [
   {
     name: "Cluster",
     href: "/cluster",
-    role: "Horizontal wrap. Alignment is props, not extra classes.",
+    role: "Horizontal group that wraps.",
     install: "cluster",
     importName: "Cluster",
     files: ["cluster.tsx", "cluster.css", "layout.ts"],
@@ -58,7 +58,7 @@ export const primitives = [
   {
     name: "Aside",
     href: "/aside",
-    role: "Declared-width column beside a fluid pane. Not the app Sidebar.",
+    role: "In-page column plus a growing pane.",
     install: "aside",
     importName: "Aside",
     files: ["aside.tsx", "aside.css", "layout.ts"],
@@ -70,7 +70,7 @@ export const primitives = [
   {
     name: "Switcher",
     href: "/switcher",
-    role: "Equal columns that stack when the container is narrower than a threshold.",
+    role: "Equal columns that stack when this box is too narrow.",
     install: "switcher",
     importName: "Switcher",
     files: ["switcher.tsx", "switcher.css", "layout.ts"],
@@ -82,7 +82,7 @@ export const primitives = [
   {
     name: "Grid",
     href: "/grid",
-    role: "Auto-fit grid. Columns are at least min wide.",
+    role: "Cards or tiles that fill the space, each at least min wide.",
     install: "grid",
     importName: "Grid",
     files: ["grid.tsx", "grid.css", "layout.ts"],
@@ -95,7 +95,7 @@ export const primitives = [
   {
     name: "Center",
     href: "/center",
-    role: "Measure-constrained, horizontally centered column.",
+    role: "A max-width column, centered.",
     install: "center",
     importName: "Center",
     files: ["center.tsx", "center.css", "layout.ts"],
@@ -106,7 +106,7 @@ export const primitives = [
   {
     name: "Cover",
     href: "/cover",
-    role: "Fills a min height. Cover.Child is vertically centered.",
+    role: "Fills a min height. Cover.Child sits in the middle.",
     install: "cover",
     importName: "Cover",
     files: ["cover.tsx", "cover.css", "layout.ts"],

@@ -20,9 +20,10 @@ export default function GridPage() {
     <DocsArticle>
       <PageHeader title="Grid">
         <p>
-          An auto-fit grid. Each column is at least <code>min</code> wide, and
-          as many columns fit as the container allows. The CSS class is{" "}
-          <code>layout-grid</code>, not Tailwind&apos;s <code>grid</code>.
+          As many columns as fit, each at least <code>min</code> wide. Use it
+          when you do not know the column count in advance. The class on the
+          element is <code>layout-grid</code>, so it does not fight Tailwind’s{" "}
+          <code>grid</code> utility.
         </p>
       </PageHeader>
 
@@ -37,14 +38,14 @@ export default function GridPage() {
       <DocsSection title="When to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
           <li>A collection of cards or tiles with a minimum width.</li>
-          <li>When you do not know the column count in advance.</li>
+          <li>When the number of columns should follow the container, not a breakpoint.</li>
         </ul>
       </DocsSection>
 
       <DocsSection title="When not to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>A fixed 12-column or 3-column marketing grid — Tailwind grid-cols-* is fine.</li>
-          <li>Two panes with a declared sidebar width — Aside.</li>
+          <li>A fixed 12-column or 3-column layout — Tailwind <code>grid-cols-*</code> is fine.</li>
+          <li>Two panes with a declared side width — Aside.</li>
         </ul>
       </DocsSection>
 
@@ -56,7 +57,7 @@ export default function GridPage() {
               type: lengthType,
               default: '"16rem"',
               description:
-                'Minimum track size before a column wraps. "64" is w-64; "16rem" also works.',
+                'Minimum column width. "64" is w-64; "16rem" also works.',
             },
             {
               prop: "space",
@@ -70,7 +71,7 @@ export default function GridPage() {
 
       <DocsSection title="Examples">
         <Example
-          label="min=10rem so you can see extra columns on a wide pane."
+          label="min=10rem so extra columns show up on a wide pane."
           code={`<Grid min="10rem" space="4">
   <div>A</div>
   <div>B</div>
@@ -88,12 +89,12 @@ export default function GridPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO — class "grid" collides with Tailwind
-<div className="grid">…</div>
+          <code>{`// Tailwind grid — fixed columns, viewport breakpoints
+<div className="grid grid-cols-1 gap-4 md:grid-cols-3">…</div>
 
-// YES — the component applies layout-grid
+// Grid — as many min-wide columns as fit
 <Grid min="16rem">…</Grid>`}</code>
         </pre>
       </DocsSection>

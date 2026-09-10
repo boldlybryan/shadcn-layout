@@ -19,10 +19,22 @@ export default function AgentsPage() {
     <DocsArticle>
       <PageHeader title="For agents">
         <p>
-          Contract for generating UI that uses this library. Prefer{" "}
-          <a href="/llms.txt">/llms.txt</a>,{" "}
-          <a href="/llms-full.txt">/llms-full.txt</a>, and{" "}
-          <a href="/agents.md">/agents.md</a> over inventing layout names.
+          This page is for code generators. If you are installing the kit by
+          hand, start at the{" "}
+          <Link href="/" className="underline-offset-4 hover:underline">
+            Introduction
+          </Link>
+          .
+        </p>
+        <p>
+          Put{" "}
+          <a href="/agents.md" className="underline-offset-4 hover:underline">
+            /agents.md
+          </a>{" "}
+          in the app you are generating into, then follow the tree below.
+          Machine-readable copies:{" "}
+          <a href="/llms.txt">/llms.txt</a> and{" "}
+          <a href="/llms-full.txt">/llms-full.txt</a>.
         </p>
       </PageHeader>
 
@@ -32,18 +44,19 @@ export default function AgentsPage() {
           <a href="/agents.md" className="underline-offset-4 hover:underline">
             /agents.md
           </a>{" "}
-          into the consuming app: <code>AGENTS.md</code> or{" "}
+          into the app as <code>AGENTS.md</code> or{" "}
           <code>.cursor/rules/layout-primitives.mdc</code> with{" "}
-          <code>alwaysApply</code>. This repo’s own <code>AGENTS.md</code> is for
-          working on the library, not for host apps.
+          <code>alwaysApply</code>. The <code>AGENTS.md</code> in this repo is
+          for working on the library itself.
         </p>
         <Install item="layouts" full />
       </DocsSection>
 
-      <DocsSection title="Decision tree">
+      <DocsSection title="Which primitive">
         <p className="text-sm text-muted-foreground">
-          Only these names. If a layout is not in the list, compose existing ones.
-          Do not create Row, VStack, SidebarLayout, or Flex.
+          Use only these names. If the layout is not on the list, compose
+          existing ones (a settings page is Cluster + Aside, not a new
+          component).
         </p>
         <ul className="list-disc space-y-2 pl-5 text-sm">
           {decisionTree.map((row) => (
@@ -71,7 +84,7 @@ export default function AgentsPage() {
         <Stack space="3">
           <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
             <li>
-              Import from the host <code>ui</code> folder after install, e.g.{" "}
+              Import from the app <code>ui</code> folder after install, e.g.{" "}
               <code>@/components/ui/layouts</code> or{" "}
               <code>@/components/ui/stack</code>.
             </li>
@@ -88,13 +101,14 @@ export default function AgentsPage() {
             </li>
             <li>
               Do not set gap, flex-direction, wrap, or justify via{" "}
-              <code>className</code> on a layout root. Use the props. Primitive CSS
-              is unlayered and will win over those utilities.
+              <code>className</code> on a layout root. Use the props. Extra{" "}
+              <code>flex</code> / <code>gap-*</code> classes will not override the
+              component.
             </li>
             <li>
               <code>as</code> changes the element. <code>asChild</code> merges
-              onto a single child. Slots accept both. Do not <code>asChild</code>{" "}
-              Aside or Cover roots.
+              onto a single child. Slots accept both. Do not{" "}
+              <code>asChild</code> Aside or Cover roots (they need their slots).
             </li>
             <li>
               Center <code>gutters</code> default to <code>&quot;0&quot;</code>.
@@ -107,8 +121,7 @@ export default function AgentsPage() {
             <li>
               Aside is not shadcn <code>Sidebar</code>. App chrome stays Sidebar.
               In-page complementary columns use Aside with{" "}
-              <code>Aside.Side</code> and{" "}
-              <code>Aside.Content</code>.
+              <code>Aside.Side</code> and <code>Aside.Content</code>.
             </li>
             <li>
               Cover&apos;s centered node must be <code>Cover.Child</code>.
@@ -128,7 +141,7 @@ export default function AgentsPage() {
       <DocsSection title="Drop-in file">
         <p className="text-sm text-muted-foreground">
           Same text as <a href="/agents.md">/agents.md</a>. Paste it into the
-          host app so the next session keeps the contract.
+          app so the next session keeps using these names.
         </p>
         <DocsCode>{agentsMd()}</DocsCode>
       </DocsSection>

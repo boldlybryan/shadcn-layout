@@ -20,8 +20,8 @@ export default function ClusterPage() {
     <DocsArticle>
       <PageHeader title="Cluster">
         <p>
-          A horizontal flex row that always wraps. Use it for toolbars, tags,
-          checkbox + label, page headers, and dialog actions.
+          A horizontal row that wraps when it runs out of room. Toolbars, tags,
+          a label beside a control, page headers, and dialog actions.
         </p>
       </PageHeader>
 
@@ -36,20 +36,14 @@ export default function ClusterPage() {
       <DocsSection title="When to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
           <li>A row of buttons or links that should wrap instead of overflow.</li>
-          <li>
-            Space-between headers: title on the start edge, actions on the end.
-          </li>
+          <li>A header: title on the start edge, actions on the end.</li>
           <li>A control sitting beside its label (checkbox, switch).</li>
         </ul>
       </DocsSection>
 
       <DocsSection title="When not to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>
-            Vertical rhythm — Stack. Cluster does not take{" "}
-            <code>direction</code> or <code>wrap={"{false}"}</code>. Wrapping is
-            the point.
-          </li>
+          <li>A vertical list — Stack. Cluster always wraps; there is no nowrap.</li>
           <li>Equal columns that collapse at a width threshold — Switcher.</li>
         </ul>
       </DocsSection>
@@ -74,19 +68,19 @@ export default function ClusterPage() {
               type: '"start" | "center" | "end" | "baseline" | "stretch"',
               default: '"center"',
               description:
-                "Cross-axis alignment. Center is the default so toolbars of buttons line up; use baseline for text-only clusters.",
+                "Cross-axis alignment. Center lines up buttons and badges; use baseline for text-only clusters.",
             },
             {
               prop: "as",
               type: "ElementType",
               default: '"div"',
-              description: "Polymorphic root (nav, header, …).",
+              description: "Render a different element (nav, header, …).",
             },
             {
               prop: "asChild",
               type: "boolean",
               default: "false",
-              description: "Merge the layout onto a single child instead of wrapping.",
+              description: "Apply the layout to a single child instead of wrapping it.",
             },
           ]}
         />
@@ -146,7 +140,7 @@ export default function ClusterPage() {
           </Cluster>
         </Example>
         <Example
-          label="Checkbox beside its label. Cluster, not a one-off flex."
+          label="Checkbox beside its label."
           code={`<Cluster space="2">
   <input id="terms" type="checkbox" />
   <label htmlFor="terms">I agree to the terms</label>
@@ -184,12 +178,12 @@ export default function ClusterPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO
+          <code>{`// Tailwind wrap + space-between
 <div className="flex flex-wrap items-center justify-between gap-4">…</div>
 
-// YES
+// Cluster
 <Cluster justify="between" space="4">…</Cluster>`}</code>
         </pre>
       </DocsSection>

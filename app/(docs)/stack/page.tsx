@@ -24,8 +24,8 @@ export default function StackPage() {
     <DocsArticle>
       <PageHeader title="Stack">
         <p>
-          A vertical flex container. Use it for forms, page sections, and any
-          column of blocks that share one gap.
+          A vertical list whose children share one gap. Forms, page sections,
+          and the body of a card or dialog.
         </p>
       </PageHeader>
 
@@ -47,8 +47,8 @@ export default function StackPage() {
 
       <DocsSection title="When not to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>Horizontal groups — that is Cluster.</li>
-          <li>Equal columns that should stack on a threshold — Switcher.</li>
+          <li>A horizontal group — Cluster.</li>
+          <li>Equal columns that should become a stack at a width — Switcher.</li>
         </ul>
       </DocsSection>
 
@@ -65,30 +65,25 @@ export default function StackPage() {
               prop: "align",
               type: '"start" | "center" | "end" | "baseline" | "stretch"',
               default: '"stretch"',
-              description: "Cross-axis alignment.",
+              description: "How children align on the cross axis.",
             },
             {
               prop: "splitAfter",
               type: "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8",
               description:
-                "Push following children to the end of a tall stack. Give the Stack a min-height via className.",
+                "After this child, push the rest to the bottom. Give the Stack a min-height (for example className=\"min-h-48\").",
             },
             {
               prop: "as",
               type: "ElementType",
               default: '"div"',
-              description: 'Polymorphic root. Use as="form" for stacked fields.',
+              description: 'Render a different element. as="form" for stacked fields.',
             },
             {
               prop: "asChild",
               type: "boolean",
               default: "false",
-              description: "Merge the layout onto a single child instead of wrapping.",
-            },
-            {
-              prop: "className",
-              type: "string",
-              description: "Exceptions only (max-width, min-height, background). Not gap.",
+              description: "Apply the layout to a single child instead of wrapping it.",
             },
           ]}
         />
@@ -110,7 +105,7 @@ export default function StackPage() {
           </Stack>
         </Example>
         <Example
-          label="Looser sections use a larger space. Nest a tighter Stack for a label + field."
+          label="A larger space between sections, a tighter Stack inside each field."
           code={`<Stack as="form" space="6">
   <Stack space="2">
     <Label htmlFor="name">Name</Label>
@@ -136,7 +131,7 @@ export default function StackPage() {
           </Stack>
         </Example>
         <Example
-          label="splitAfter={1} on a tall stack pins later children to the end."
+          label="splitAfter={1} on a tall stack keeps later children at the end."
           code={`<Stack space="3" splitAfter={1} className="min-h-48">
   <div>Nav</div>
   <div>Sign out</div>
@@ -149,12 +144,12 @@ export default function StackPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO — this is a Stack written from memory
+          <code>{`// Tailwind column
 <div className="flex flex-col gap-4">…</div>
 
-// YES
+// Stack
 <Stack space="4">…</Stack>`}</code>
         </pre>
       </DocsSection>

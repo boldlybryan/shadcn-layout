@@ -49,8 +49,8 @@ export default function CenterPage() {
 
       <DocsSection title="When not to use">
         <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>Centering a single icon or button on both axes — Cover, or a one-off.</li>
-          <li>Full-bleed dashboards. Omit Center and let the pane fill.</li>
+          <li>Centering one icon or button on both axes — Cover.</li>
+          <li>Full-bleed dashboards. Skip Center and let the pane fill.</li>
         </ul>
       </DocsSection>
 
@@ -61,20 +61,21 @@ export default function CenterPage() {
               prop: "measure",
               type: '"sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "prose" | CSS length',
               default: '"prose"',
-              description: 'Max inline size. Named keys map to Tailwind max-width. "prose" is 65ch. Any CSS length also works.',
+              description: 'Max width. Named keys map to Tailwind max-width. "prose" is 65ch. Any CSS length also works.',
             },
             {
               prop: "gutters",
               type: spacingType,
               default: '"0"',
               description:
-                "Inline padding added outside the measure. Default is none; set this at the page edge.",
+                "Horizontal padding outside the max width. Off by default; set this at the page edge.",
             },
             {
               prop: "intrinsic",
               type: "boolean",
               default: "false",
-              description: "Also center children on the block axis (flex column, align center).",
+              description:
+                "Also center children when they are narrower than the column. Unrelated to the Intrinsic design page.",
             },
           ]}
         />
@@ -82,9 +83,9 @@ export default function CenterPage() {
 
       <DocsSection title="Examples">
         <Example
-          label="Default measure is prose (65ch). Gutters default to 0; set them at the page edge."
+          label="Default measure is prose (65ch). Gutters are 0 unless you set them."
           code={`<Center measure="prose" gutters="4">
-  <p>Center limits line length. Gutters sit outside that measure.</p>
+  <p>Center limits line length. Gutters sit outside that width.</p>
 </Center>`}
         >
           <Center measure="prose" gutters="4">
@@ -99,14 +100,14 @@ export default function CenterPage() {
         </Example>
       </DocsSection>
 
-      <DocsSection title="Do not">
+      <DocsSection title="Instead of">
         <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs leading-relaxed">
-          <code>{`// NO — mx-auto inside a flex column often fails to center
+          <code>{`// mx-auto inside a flex column often fails to center
 <div className="flex flex-col">
   <div className="max-w-3xl mx-auto">…</div>
 </div>
 
-// YES
+// Center
 <Center measure="3xl" gutters="8">…</Center>`}</code>
         </pre>
       </DocsSection>
