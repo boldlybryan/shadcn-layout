@@ -103,9 +103,9 @@ export default function IntrinsicPage() {
           this project.
         </p>
         <p className="text-sm text-muted-foreground">
-          Why writing those algorithms as Tailwind utilities goes wrong is{" "}
+          Why those algorithms should not be Tailwind utilities is{" "}
           <Link href="/tailwind" className="underline-offset-4 hover:underline">
-            The perils of Tailwind for layout
+            Why not Tailwind?
           </Link>
           .
         </p>

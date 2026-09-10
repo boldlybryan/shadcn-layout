@@ -30,9 +30,9 @@ export default function IntroductionPage() {
           <Link href="/intrinsic" className="underline-offset-4 hover:underline">
             intrinsic design
           </Link>
-          . Why a class string is a poor way to write the layout itself is{" "}
+          . For why a class string is a poor way to write the layout itself, see{" "}
           <Link href="/tailwind" className="underline-offset-4 hover:underline">
-            The perils of Tailwind for layout
+            Why not Tailwind?
           </Link>
           .
         </p>

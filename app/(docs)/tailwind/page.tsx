@@ -9,7 +9,7 @@ import { Grid } from "@/registry/new-york/ui/grid"
 import { Stack } from "@/registry/new-york/ui/stack"
 import { Switcher } from "@/registry/new-york/ui/switcher"
 
-export const metadata: Metadata = { title: "The perils of Tailwind for layout" }
+export const metadata: Metadata = { title: "Why not Tailwind?" }
 
 function Resizable({
   caption,
@@ -31,7 +31,7 @@ function Resizable({
 export default function TailwindLayoutPage() {
   return (
     <DocsArticle>
-      <PageHeader title="The perils of Tailwind for layout">
+      <PageHeader title="Why not Tailwind?">
         <p>
           Tailwind is a way to write CSS one property at a time. Layout is not
           a property. It is an algorithm: given this box, and these children,
