@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Layout primitives
 
-Source of truth: `registry/new-york/ui/` and the docs site (`/`, `/intrinsic`, `/tailwind`, `/stack`, …, `/agents`, `/llms.txt`, `/llms-full.txt`, `/agents.md`).
+Source of truth: `registry/new-york/ui/` and the docs site (`/`, `/intrinsic`, `/tailwind`, `/stack`, …, `/showcase`, `/agents`, `/llms.txt`, `/llms-full.txt`, `/agents.md`).
 
 Consuming apps should copy `/agents.md`, not this file.
 

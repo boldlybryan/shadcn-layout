@@ -34,7 +34,12 @@ export default function AgentsPage() {
           in the app you are generating into, then follow the tree below.
           Machine-readable copies:{" "}
           <a href="/llms.txt">/llms.txt</a> and{" "}
-          <a href="/llms-full.txt">/llms-full.txt</a>.
+          <a href="/llms-full.txt">/llms-full.txt</a>. Composed product surfaces
+          live on{" "}
+          <Link href="/showcase" className="underline-offset-4 hover:underline">
+            Showcase
+          </Link>
+          .
         </p>
       </PageHeader>
 
